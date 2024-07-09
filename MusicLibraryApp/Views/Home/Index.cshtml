@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model MusicLibraryApp.Models.HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    Log In To Your Account
+    <form asp-action="Login" method="post">
+        <div>
+            <label asp-for="Login.Username"></label>
+            <input asp-for="Login.Username" />
+        </div>
+        <div>
+            <label asp-for="Login.Password"></label>
+            <input asp-for="Login.Password" type="password" />
+        </div>
+        <button type="submit">LogIn</button>
+    </form>
+</div>
+
+<div>
+    Create New Account
+    <form asp-action="Register" method="post">
+        <div>
+            <label asp-for="Registration.Username"></label>
+            <input asp-for="Registration.Username" />
+        </div>
+        <div>
+            <label asp-for="Registration.Password"></label>
+            <input asp-for="Registration.Password" type="password" />
+        </div>
+        <div>
+            <label asp-for="Registration.Confirmation"></label>
+            <input asp-for="Registration.Confirmation" type="password" />
+        </div>
+        <button type="submit">Register</button>
+    </form>
 </div>
