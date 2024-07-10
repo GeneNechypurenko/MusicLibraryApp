@@ -25,12 +25,12 @@ namespace MusicLibraryApp
 
 			var app = builder.Build();
 
-			using (var scope = app.Services.CreateScope())
-			{
-				var services = scope.ServiceProvider;
-				var context = services.GetRequiredService<ApplicationDbContext>();
-				context.Database.Migrate();
-			}
+			//using (var scope = app.Services.CreateScope())
+			//{
+			//	var services = scope.ServiceProvider;
+			//	var context = services.GetRequiredService<ApplicationDbContext>();
+			//	context.Database.Migrate();
+			//}
 
 			app.UseStaticFiles();
 			app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");

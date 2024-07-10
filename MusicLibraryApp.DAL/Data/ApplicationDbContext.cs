@@ -27,46 +27,51 @@ namespace MusicLibraryApp.DAL.Data
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 1,
-                Genre = "Electronic",
+                Genre = "All Genre",
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 2,
-                Genre = "Hip-Hop"
+                Genre = "Electronic",
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 3,
-                Genre = "Rock"
+                Genre = "Hip-Hop"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 4,
-                Genre = "Classical"
+                Genre = "Rock"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 5,
-                Genre = "Pop"
+                Genre = "Classical"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 6,
-                Genre = "Jazz"
+                Genre = "Pop"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 7,
-                Genre = "Folk"
+                Genre = "Jazz"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 8,
-                Genre = "Cinematic"
+                Genre = "Folk"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 9,
+                Genre = "Cinematic"
+            });
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = 10,
                 Genre = "Reggae"
             });
         }

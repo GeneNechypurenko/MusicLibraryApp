@@ -1,35 +1,77 @@
-﻿@model MusicLibraryApp.Models.HomeViewModel
+﻿@model MusicLibraryApp.Models.HomePageViewModel
 
 <div>
-    Log In To Your Account
-    <form asp-action="Login" method="post">
-        <div>
-            <label asp-for="Login.Username"></label>
-            <input asp-for="Login.Username" />
-        </div>
-        <div>
-            <label asp-for="Login.Password"></label>
-            <input asp-for="Login.Password" type="password" />
-        </div>
-        <button type="submit">LogIn</button>
-    </form>
-</div>
+    <div>
+        <h2>Log In To Your Account</h2>
+        <form asp-action="Login" method="post">
+            <div>
+                <label asp-for="Login.Username"></label>
+                <input asp-for="Login.Username" />
+            </div>
+            <div>
+                <label asp-for="Login.Password"></label>
+                <input asp-for="Login.Password" type="password" />
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
 
-<div>
-    Create New Account
-    <form asp-action="Register" method="post">
-        <div>
-            <label asp-for="Registration.Username"></label>
-            <input asp-for="Registration.Username" />
-        </div>
-        <div>
-            <label asp-for="Registration.Password"></label>
-            <input asp-for="Registration.Password" type="password" />
-        </div>
-        <div>
-            <label asp-for="Registration.Confirmation"></label>
-            <input asp-for="Registration.Confirmation" type="password" />
-        </div>
-        <button type="submit">Register</button>
-    </form>
+    <div>
+        <h2>Create New Account</h2>
+        <form asp-action="Registration" method="post">
+            <div>
+                <label asp-for="Registration.Username"></label>
+                <input asp-for="Registration.Username" />
+            </div>
+            <div>
+                <label asp-for="Registration.Password"></label>
+                <input asp-for="Registration.Password" type="password" />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Filter Tunes by Genre</h2>
+        <form asp-action="Index" method="get">
+            <div>
+                <label for="SelectedGenreId">Select Genre:</label>
+                <select asp-for="Filter.SelectedGenreId" asp-items="Model.Filter.Categories"></select>
+            </div>
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>List of Tunes</h2>
+        <ul>
+            @foreach (var tune in Model.Tunes)
+            {
+                <li>
+                    <h3>@tune.Title</h3>
+                    <p>Performer: @tune.Performer</p>
+                    <p>Genre: @tune.CategoryName</p>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item @(Model.Pagination.HasPreviousPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Pagination.CurrentPage - 1)">Previous</a>
+                </li>
+                @for (var i = 1; i <= Model.Pagination.TotalPages; i++)
+                {
+                    <li class="page-item @(Model.Pagination.CurrentPage == i ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.Pagination.HasNextPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Pagination.CurrentPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>

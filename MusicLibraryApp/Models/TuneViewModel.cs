@@ -11,6 +11,6 @@ namespace MusicLibraryApp.Models
         public bool IsAuthorized { get; set; }
         public bool IsBlocked { get; set; }
         public int? CategoryId { get; set; }
-        public CategoryViewModel? Category { get; set; }
+        public string? CategoryName { get; set; }
     }
 }
