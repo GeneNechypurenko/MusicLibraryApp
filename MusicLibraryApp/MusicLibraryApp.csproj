@@ -10,4 +10,10 @@
     <ProjectReference Include="..\MusicLibraryApp.BLL\MusicLibraryApp.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\res\Category\Posters\default_poster.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

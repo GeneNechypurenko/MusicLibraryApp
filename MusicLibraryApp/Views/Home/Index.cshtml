@@ -1,77 +1,57 @@
-﻿@model MusicLibraryApp.Models.HomePageViewModel
+﻿@model MusicLibraryApp.Models.HomePage.HomePageViewModel
 
-<div>
-    <div>
-        <h2>Log In To Your Account</h2>
-        <form asp-action="Login" method="post">
-            <div>
-                <label asp-for="Login.Username"></label>
-                <input asp-for="Login.Username" />
-            </div>
-            <div>
-                <label asp-for="Login.Password"></label>
-                <input asp-for="Login.Password" type="password" />
-            </div>
-            <button type="submit">Log In</button>
-        </form>
-    </div>
+@section HeaderNavigation {
+    <a class="header-link" asp-action="Index">GENRES</a>
+    <a class="header-link" asp-controller="Tunes">TUNES</a>
+    @if (Model.User.IsAuthorized)
+    {
+        <a class="header-link" asp-controller="TunesManagement">TUNES MANAGEMENT</a>
+    }
+    @if(Model.User.IsAdmin)
+    {
+        <a class="header-link" asp-controller="CategoryManagement">GENRES MANAGEMENT</a>
+        <a class="header-link" asp-controller="UserManagement">USERS MANAGEMENT</a>
+    }
+@*     <div class="header-searchbar">
+        <input type="search" asp-action="Search" placeholder="Search" />
+    </div> *@
+}
 
-    <div>
-        <h2>Create New Account</h2>
-        <form asp-action="Registration" method="post">
-            <div>
-                <label asp-for="Registration.Username"></label>
-                <input asp-for="Registration.Username" />
-            </div>
-            <div>
-                <label asp-for="Registration.Password"></label>
-                <input asp-for="Registration.Password" type="password" />
-            </div>
-            <button type="submit">Register</button>
-        </form>
-    </div>
+@section HeaderContainer {
+    @if (Model.User.Username == null)
+    {
+        <a class="header-login" asp-controller="Login">LogIn</a>
+        <a class="header-registration" asp-controller="Registration">SignUp</a>
+    }
+    else
+    {
+        <p class="header-username">hello, @Model.User.Username!</p>
+        <a class="header-logout" asp-action="Logout">LogOut</a>
+    }
+}
 
-    <div>
-        <h2>Filter Tunes by Genre</h2>
-        <form asp-action="Index" method="get">
-            <div>
-                <label for="SelectedGenreId">Select Genre:</label>
-                <select asp-for="Filter.SelectedGenreId" asp-items="Model.Filter.Categories"></select>
-            </div>
-            <button type="submit">Filter</button>
-        </form>
-    </div>
-
-    <div>
-        <h2>List of Tunes</h2>
-        <ul>
-            @foreach (var tune in Model.Tunes)
+<section class="main-content">
+    <h4 class="main-text">FEATURED GENRES</h4>
+    <div class="pagination-container">
+        <div class="pagination-arrow">
+            @if (Model.Pagination.HasPreviousPage)
             {
-                <li>
-                    <h3>@tune.Title</h3>
-                    <p>Performer: @tune.Performer</p>
-                    <p>Genre: @tune.CategoryName</p>
-                </li>
+                <a href="?pageNumber=@(Model.Pagination.CurrentPage - 1)">&lt;</a>
             }
-        </ul>
+        </div>
+        <div class="category-item-container">
+            @foreach (var category in Model.Categories)
+            {
+                <div class="category-item" style="background-image: url('@category.PosterUrl')">
+                    <h3>@category.Genre</h3>
+                </div>
+            }
+        </div>
+        <div class="pagination-arrow">
+            @if (Model.Pagination.HasNextPage)
+            {
+                <a href="?pageNumber=@(Model.Pagination.CurrentPage + 1)">&gt;</a>
+            }
+        </div>
     </div>
-
-    <div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item @(Model.Pagination.HasPreviousPage ? "" : "disabled")">
-                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Pagination.CurrentPage - 1)">Previous</a>
-                </li>
-                @for (var i = 1; i <= Model.Pagination.TotalPages; i++)
-                {
-                    <li class="page-item @(Model.Pagination.CurrentPage == i ? "active" : "")">
-                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
-                    </li>
-                }
-                <li class="page-item @(Model.Pagination.HasNextPage ? "" : "disabled")">
-                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Pagination.CurrentPage + 1)">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
+</section>

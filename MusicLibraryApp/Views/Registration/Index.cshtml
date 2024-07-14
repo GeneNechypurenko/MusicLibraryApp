@@ -1,0 +1,21 @@
+﻿@model MusicLibraryApp.Models.RegistrationPage.RegistrationViewModel;
+
+@section HeaderNavigation {
+	<h2 class="header-login-text">CREATE NEW ACCOUNT</h2>
+}
+
+@section HeaderContainer {
+	<a asp-controller="Login" class="header-login">LogIn</a>
+	<a asp-controller="Home" class="header-back">Home</a>
+}
+
+<section class="login-main-content">
+	<form asp-action="Registration" method="post" class="login-form">
+		<input placeholder="Username" asp-for="@Model.Username" />
+		<hr />
+		<input placeholder="Password" asp-for="@Model.Password" />
+		<input placeholder="Confirm" asp-for="@Model.Confirmation" />
+		<hr />
+		<button class="login-button" asp-action="Registration">Sign Up</button>
+	</form>
+</section>

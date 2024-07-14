@@ -48,7 +48,21 @@ namespace MusicLibraryApp.BLL.Services
 			};
 		}
 
-		public async Task UpdateAsync(UserDTO modelDTO)
+        public async Task<UserDTO> GetAsync(string name)
+        {
+            var user = await UnitOfWork.Users.GetAsync(name);
+            return new UserDTO
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password,
+                IsAdmin = user.IsAdmin,
+                IsAuthorized = user.IsAuthorized,
+                IsBlocked = user.IsBlocked,
+            };
+        }
+
+        public async Task UpdateAsync(UserDTO modelDTO)
 		{
 			var user = new User
 			{

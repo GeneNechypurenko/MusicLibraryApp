@@ -28,7 +28,23 @@ namespace MusicLibraryApp.BLL.Services
 			};
 		}
 
-		public async Task<IEnumerable<TuneDTO>> GetAllAsync()
+        public async Task<TuneDTO> GetAsync(string name)
+        {
+            var tune = await UnitOfWork.Tunes.GetAsync(name);
+            return new TuneDTO
+            {
+                Id = tune.Id,
+                Performer = tune.Performer,
+                Title = tune.Title,
+                FileUrl = tune.FileUrl,
+                PosterUrl = tune.PosterUrl,
+                IsAuthorized = tune.IsAuthorized,
+                IsBlocked = tune.IsBlocked,
+                Category = tune.Category,
+            };
+        }
+
+        public async Task<IEnumerable<TuneDTO>> GetAllAsync()
 			=> new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Tune, TuneDTO>()
 			.ForMember("Category", o => o.MapFrom(c => c.Category.Genre))))
 			.Map<IEnumerable<Tune>, IEnumerable<TuneDTO>>(await UnitOfWork.Tunes.GetAllAsync());

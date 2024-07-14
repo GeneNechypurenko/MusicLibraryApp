@@ -4,38 +4,43 @@ using MusicLibraryApp.BLL.Services;
 using MusicLibraryApp.BLL.Infrastructure;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.DAL.Data;
+using Microsoft.AspNetCore.Session;
 
 namespace MusicLibraryApp
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-			builder.Services.AddApplicationDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+            builder.Services.AddApplicationDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
-			builder.Services.AddUnitOfWorkService();
+            builder.Services.AddUnitOfWorkService();
 
-			builder.Services.AddScoped<IService<UserDTO>, UserService>();
-			builder.Services.AddScoped<IService<CategoryDTO>, CategoryService>();
-			builder.Services.AddScoped<IService<TuneDTO>, TuneService>();
+            builder.Services.AddScoped<IService<UserDTO>, UserService>();
+            builder.Services.AddScoped<IService<CategoryDTO>, CategoryService>();
+            builder.Services.AddScoped<IService<TuneDTO>, TuneService>();
 
-			builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();
 
-			var app = builder.Build();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
-			//using (var scope = app.Services.CreateScope())
-			//{
-			//	var services = scope.ServiceProvider;
-			//	var context = services.GetRequiredService<ApplicationDbContext>();
-			//	context.Database.Migrate();
-			//}
+            var app = builder.Build();
 
-			app.UseStaticFiles();
-			app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseStaticFiles();
 
-			app.Run();
-		}
-	}
+            app.UseSession();
+
+            app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.Run();
+        }
+    }
 }

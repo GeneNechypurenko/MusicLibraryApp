@@ -1,0 +1,19 @@
+﻿@model MusicLibraryApp.Models.LoginPage.LoginViewModel
+
+@section HeaderNavigation {
+    <h2 class="header-login-text">LOGIN TO YOUR ACCOUNT</h2>
+}
+
+@section HeaderContainer {
+    <a asp-controller="Home" class="header-back">Back</a>
+}
+
+<section class="login-main-content">
+    <form asp-action="Index" method="post" class="login-form">
+        <input placeholder="Username" asp-for="Username" />
+        <hr />
+        <input placeholder="Password" asp-for="Password" />
+        <hr />
+        <button class="login-button" type="submit">Log In</button>
+    </form>
+</section>
