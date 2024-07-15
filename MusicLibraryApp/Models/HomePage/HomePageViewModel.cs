@@ -1,16 +1,19 @@
-﻿namespace MusicLibraryApp.Models.HomePage
+﻿using MusicLibraryApp.BLL.ModelsDTO;
+
+namespace MusicLibraryApp.Models.HomePage
 {
     public class HomePageViewModel
     {
-        public PaginationViewModel Pagination { get; set; }
-        public List<CategoryViewModel> Categories { get; set; }
         public UserViewModel User { get; set; }
-
-        public HomePageViewModel()
+        public IEnumerable<TuneDTO> Tunes { get; set; }
+        public PageViewModel Page { get; set; }
+        public FilterViewModel Filter { get; set; }
+        public HomePageViewModel(UserViewModel user, IEnumerable<TuneDTO> tunes, PageViewModel page, FilterViewModel filter) 
         {
-            Pagination = new PaginationViewModel(0, 1, 10);
-            Categories = new List<CategoryViewModel>();
-            User = null;
+            User = user;
+            Tunes = tunes;
+            Page = page;
+            Filter = filter;
         }
     }
 }

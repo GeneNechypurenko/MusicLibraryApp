@@ -14,47 +14,35 @@ namespace MusicLibraryApp.Controllers
     {
         private readonly IService<CategoryDTO> _categoryService;
         private readonly IService<UserDTO> _userService;
+        private readonly IService<TuneDTO> _tuneService;
 
-        public HomeController(IService<CategoryDTO> categoryService, IService<UserDTO> userService)
+        public HomeController(IService<CategoryDTO> categoryService, IService<UserDTO> userService, IService<TuneDTO> tuneService)
         {
             _categoryService = categoryService;
             _userService = userService;
+            _tuneService = tuneService;
         }
 
-        public async Task<IActionResult> Index(int selectedGenreId = 0, int pageNumber = 1, int pageSize = 4)
+        public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 10)
         {
+            var tunes = await _tuneService.GetAllAsync();
             var categories = await _categoryService.GetAllAsync();
-            var categoryViewModel = categories.Select(c => new CategoryViewModel
-            {
-                Genre = c.Genre,
-                PosterUrl = c.PosterUrl
-            }).ToList();
 
-            int count = categoryViewModel.Count();
-            var items = categoryViewModel.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-            var paginationViewModel = new PaginationViewModel(count, pageNumber, pageSize);
+            if (selectedGenreId != 0)
+                tunes.Where(t => t.Category.Id == selectedGenreId).ToList();
 
-            var username = HttpContext.Session.GetString("Username");
-            UserDTO userDto = null;
-            if (!string.IsNullOrEmpty(username))
-            {
-                userDto = await _userService.GetAsync(username);
-            }
+            if (!string.IsNullOrEmpty(search))
+                tunes.Where(t => t.Title == search).ToList();
 
-            var homePageViewModel = new HomePageViewModel
-            {
-                Pagination = paginationViewModel,
-                Categories = items,
-                User = userDto != null ? new UserViewModel
-                {
-                    Username = userDto.Username,
-                    IsAdmin = userDto.IsAdmin,
-                    IsAuthorized = userDto.IsAuthorized,
-                    IsBlocked = userDto.IsBlocked
-                } : new UserViewModel()
-            };
+            HomePageViewModel viewModel = new HomePageViewModel
+                (
+                new UserViewModel(),
+                tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
+                new PageViewModel(tunes.Count(), pageNumber, pageSize),
+                new FilterViewModel(categories.ToList(), selectedGenreId, search)
+                );
 
-            return View(homePageViewModel);
+            return View(viewModel);
         }
 
         public IActionResult Logout()

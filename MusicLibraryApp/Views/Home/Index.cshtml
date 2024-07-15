@@ -12,9 +12,9 @@
         <a class="header-link" asp-controller="CategoryManagement">GENRES MANAGEMENT</a>
         <a class="header-link" asp-controller="UserManagement">USERS MANAGEMENT</a>
     }
-@*     <div class="header-searchbar">
-        <input type="search" asp-action="Search" placeholder="Search" />
-    </div> *@
+    <div class="header-searchbar">
+        <input type="search" value="@Model.Filter.Search" placeholder="Search" />
+    </div>
 }
 
 @section HeaderContainer {
@@ -31,20 +31,20 @@
 }
 
 <section class="main-content">
-    <h4 class="main-text">FEATURED GENRES</h4>
+    <select class="main-select" asp-items="@Model.Filter.Categories"></select>
+    <div class="category-item-container">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="category-item" style="background-image: url('@category.PosterUrl')">
+                <h3>@category.Genre</h3>
+            </div>
+        }
+    </div>
     <div class="pagination-container">
         <div class="pagination-arrow">
             @if (Model.Pagination.HasPreviousPage)
             {
                 <a href="?pageNumber=@(Model.Pagination.CurrentPage - 1)">&lt;</a>
-            }
-        </div>
-        <div class="category-item-container">
-            @foreach (var category in Model.Categories)
-            {
-                <div class="category-item" style="background-image: url('@category.PosterUrl')">
-                    <h3>@category.Genre</h3>
-                </div>
             }
         </div>
         <div class="pagination-arrow">

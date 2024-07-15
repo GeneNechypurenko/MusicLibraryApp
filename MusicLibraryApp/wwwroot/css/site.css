@@ -21,7 +21,7 @@ main,
 .login-form,
 .header-login-text,
 .header-username,
-/*.header-searchbar,*/
+.header-searchbar,
 .header-link {
     display: flex;
     flex-direction: column;
@@ -32,7 +32,6 @@ main,
 
 .header-content,
 .header-container,
-.home-index-content,
 .pagination-container,
 .category-item-container {
     display: flex;
@@ -151,7 +150,7 @@ header {
         padding: 10px;
     }
 
-/*.header-searchbar {
+.header-searchbar {
     height: 100%;
     width: auto;
 }
@@ -167,11 +166,11 @@ header {
         font-weight: bold;
         text-align: center;
         color: #ccc;
-    }*/
+    }
 
-/*        .header-searchbar input::placeholder {
+        .header-searchbar input::placeholder {
             color: black;
-        }*/
+        }
 
 .main-content {
     height: 80%;
@@ -184,7 +183,7 @@ header {
     padding-right: 20px;
 }
 
-.main-text {
+.main-select {
     height: 5%;
     width: 100%;
     color: #222;
