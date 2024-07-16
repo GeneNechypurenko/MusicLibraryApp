@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
-using System.Collections.Generic;
 
-namespace MusicLibraryApp.Models
+namespace MusicLibraryApp.Models.HomePage
 {
     public class FilterViewModel
     {
-        public FilterViewModel(List<CategoryDTO> categories, int selectedGenreId)
+        public FilterViewModel(List<CategoryDTO> categories, int selectedGenreId, string search)
         {
-            categories.Insert(0, new CategoryDTO { Id = 0, Genre = "All" });
+            categories.Insert(0, new CategoryDTO { Id = 0, Genre = "All Genres" });
             Categories = new SelectList(categories, "Id", "Genre", selectedGenreId);
             SelectedGenreId = selectedGenreId;
+            Search = search;
+            
         }
         public SelectList Categories { get; }
         public int SelectedGenreId { get; }
-        public List<TuneViewModel> Tunes { get; set; }
+        public string Search { get; }
     }
 }
