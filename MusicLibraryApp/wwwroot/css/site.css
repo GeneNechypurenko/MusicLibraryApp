@@ -1,5 +1,5 @@
 
-/* ----- Common Region ----- */
+/* ----- General Region ----- */
 
 * {
     margin: 0;
@@ -178,8 +178,93 @@ main {
 
 /* ----- Home region ----- */
 
+.home-main-container,
+.home-filter h2,
+.home-filter form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.home-main-container {
+    position: relative;
+    height: 80%;
+    width: 100%;
+}
+
+.home-item-container {
+    position: relative;
+    height: calc(100% - 120px);
+    width: 100%;
+}
+
+    .home-main-container::before,
+    .home-main-container::after,
+    .home-item-container::before,
+    .home-item-container::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(45deg, #ff7300, #00ffd5);
+    }
+
+    .home-main-container::before,
+    .home-item-container::before {
+        top: 0;
+    }
+
+    .home-main-container::after,
+    .home-item-container::after {
+        bottom: 0;
+    }
+
+.home-filter {
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+    .home-filter h2, .home-filter form {
+        height: 100%;
+        background: black;
+        color: #ff7300;
+        margin: 0;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .home-filter h2 {
+        width: 30%;
+    }
+
+    .home-filter form {
+        width: 70%;
+    }
+
+        .home-filter form select {
+            height: 80%;
+            width: 20%;
+            background: #fff;
+            color: black;
+            font-weight: bold;
+            padding: 6px;
+            text-align: center;
+        }
+
+.home-pagination {
+    height: 40px;
+}
+
 
 /* ----- Login and Registration regions ----- */
+
 
 .login-main-container {
     height: 400px;

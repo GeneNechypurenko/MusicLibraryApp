@@ -46,7 +46,7 @@ namespace MusicLibraryApp.BLL.Services
 
         public async Task<IEnumerable<TuneDTO>> GetAllAsync()
 			=> new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Tune, TuneDTO>()
-			.ForMember("Category", o => o.MapFrom(c => c.Category.Genre))))
+			.ForMember("Category", o => o.MapFrom(c => c.Category))))
 			.Map<IEnumerable<Tune>, IEnumerable<TuneDTO>>(await UnitOfWork.Tunes.GetAllAsync());
 
 		public async Task CreateAsync(TuneDTO modelDTO)

@@ -10,45 +10,50 @@ using Microsoft.AspNetCore.Http;
 
 namespace MusicLibraryApp.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly IService<CategoryDTO> _categoryService;
-        private readonly IService<UserDTO> _userService;
-        private readonly IService<TuneDTO> _tuneService;
+	public class HomeController : Controller
+	{
+		private readonly IService<CategoryDTO> _categoryService;
+		private readonly IService<UserDTO> _userService;
+		private readonly IService<TuneDTO> _tuneService;
 
-        public HomeController(IService<CategoryDTO> categoryService, IService<UserDTO> userService, IService<TuneDTO> tuneService)
-        {
-            _categoryService = categoryService;
-            _userService = userService;
-            _tuneService = tuneService;
-        }
+		public HomeController(IService<CategoryDTO> categoryService, IService<UserDTO> userService, IService<TuneDTO> tuneService)
+		{
+			_categoryService = categoryService;
+			_userService = userService;
+			_tuneService = tuneService;
+		}
 
-        public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 10)
-        {
-            var tunes = await _tuneService.GetAllAsync();
-            var categories = await _categoryService.GetAllAsync();
+		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 10)
+		{
+			var tunes = await _tuneService.GetAllAsync();
+			var categories = await _categoryService.GetAllAsync();
+			var user = new UserDTO();
 
-            if (selectedGenreId != 0)
-                tunes.Where(t => t.Category.Id == selectedGenreId).ToList();
+			if (HttpContext.Session.GetString("Username") != null)
+				user = await _userService.GetAsync(HttpContext.Session.GetString("Username"));
 
-            if (!string.IsNullOrEmpty(search))
-                tunes.Where(t => t.Title == search).ToList();
+			if (selectedGenreId != 0)
+				tunes = tunes.Where(t => t.Category.Id == selectedGenreId);
 
-            HomePageViewModel viewModel = new HomePageViewModel
-                (
-                new UserViewModel(),
-                tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
-                new PageViewModel(tunes.Count(), pageNumber, pageSize),
-                new FilterViewModel(categories.ToList(), selectedGenreId, search)
-                );
+			if (!string.IsNullOrEmpty(search))
+				tunes = tunes.Where(t => t.Title.Contains(search));
 
-            return View(viewModel);
-        }
+			var totalItems = tunes.Count();
+			var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
-        }
-    }
+			HomePageViewModel viewModel = new HomePageViewModel(
+				new UserViewModel(user),
+				tunesOnPage,
+				new PageViewModel(totalItems, pageNumber, pageSize),
+				new FilterViewModel(categories.ToList(), selectedGenreId, search));
+
+			return View(viewModel);
+		}
+
+		public IActionResult Logout()
+		{
+			HttpContext.Session.Clear();
+			return RedirectToAction("Index", "Home");
+		}
+	}
 }

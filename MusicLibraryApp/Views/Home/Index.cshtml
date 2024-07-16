@@ -1,23 +1,75 @@
 ﻿@model MusicLibraryApp.Models.HomePage.HomePageViewModel
 
 @section HeaderNavigation {
-    <a class="link_type_a" asp-action="Index">GENRES</a>
-    <a class="link_type_a" asp-controller="Tunes">TUNES</a>
+	<a class="link_type_a" asp-action="Index">GENRES</a>
+	<a class="link_type_a" asp-controller="Tunes">TUNES</a>
 }
 
 @section HeaderSearch {
-    <div>test</div>
+	<div>test</div>
 }
 
 @section HeaderContent {
-    @if (Model.User.Username == null)
-    {
-        <a class="link_type_b" asp-controller="Login">LogIn</a>
-        <a class="link_type_c" asp-controller="Registration">SignUp</a>
-    }
-    else
-    {
-        <p class="display_username">hello, @Model.User.Username!</p>
-        <a class="link_type_c" asp-action="Logout">LogOut</a>
-    }
+	@if (Model.User.Username == null)
+	{
+		<a class="link_type_b" asp-controller="Login">LogIn</a>
+		<a class="link_type_c" asp-controller="Registration">SignUp</a>
+	}
+	else
+	{
+		<p class="display_username">hello, @Model.User.Username!</p>
+		<a class="link_type_c" asp-action="Logout">LogOut</a>
+	}
 }
+
+<section class="home-main-container">
+
+	<div class="home-filter">
+		<h2>Featured Genres</h2>
+		<form method="get" asp-action="Index">
+			<select name="selectedGenreId" asp-for="Filter.SelectedGenreId" asp-items="Model.Filter.Categories" onchange="this.form.submit()"></select>
+		</form>
+	</div>
+
+	<div class="home-item-container">
+@* 		@foreach (var tune in Model.Tunes)
+		{
+			<div class="tune-item">
+				<h3>@tune.Title</h3>
+				<p>@tune.Performer</p>
+				<p>@tune.Category.Genre</p>
+				<audio controls>
+					<source src="@tune.FileUrl" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio>
+				@if (!string.IsNullOrEmpty(tune.PosterUrl))
+				{
+					<img src="@tune.PosterUrl" alt="@tune.Title" class="tune-poster" />
+				}
+			</div>
+		} *@
+	</div>
+
+	<div class="home-pagination">
+@* 		@if (Model.Page.HasPreviousPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
+			   asp-route-selectedGenreId="@(Model.Filter.SelectedGenreId)"
+			   asp-route-search="@(Model.Filter.Search)"
+			   class="btn btn-primary">
+				Назад
+			</a>
+		}
+		@if (Model.Page.HasNextPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
+			   asp-route-selectedGenreId="@(Model.Filter.SelectedGenreId)"
+			   asp-route-search="@(Model.Filter.Search)"
+			   class="btn btn-primary">
+				Вперед
+			</a>
+		} *@
+	</div>
+</section>
