@@ -3,15 +3,6 @@
 @section HeaderNavigation {
     <a class="link_type_a" asp-action="Index">GENRES</a>
     <a class="link_type_a" asp-controller="Tunes">TUNES</a>
-    @if (Model.User.IsAuthorized)
-    {
-        <a class="link_type_a" asp-controller="TunesManagement">TUNES MANAGEMENT</a>
-    }
-    @if(Model.User.IsAdmin)
-    {
-        <a class="link_type_a" asp-controller="CategoryManagement">GENRES MANAGEMENT</a>
-        <a class="link_type_a" asp-controller="UserManagement">USERS MANAGEMENT</a>
-    }
 }
 
 @section HeaderSearch {
