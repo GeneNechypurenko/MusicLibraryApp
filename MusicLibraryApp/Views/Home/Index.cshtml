@@ -1,57 +1,32 @@
 ﻿@model MusicLibraryApp.Models.HomePage.HomePageViewModel
 
 @section HeaderNavigation {
-    <a class="header-link" asp-action="Index">GENRES</a>
-    <a class="header-link" asp-controller="Tunes">TUNES</a>
+    <a class="link_type_a" asp-action="Index">GENRES</a>
+    <a class="link_type_a" asp-controller="Tunes">TUNES</a>
     @if (Model.User.IsAuthorized)
     {
-        <a class="header-link" asp-controller="TunesManagement">TUNES MANAGEMENT</a>
+        <a class="link_type_a" asp-controller="TunesManagement">TUNES MANAGEMENT</a>
     }
     @if(Model.User.IsAdmin)
     {
-        <a class="header-link" asp-controller="CategoryManagement">GENRES MANAGEMENT</a>
-        <a class="header-link" asp-controller="UserManagement">USERS MANAGEMENT</a>
+        <a class="link_type_a" asp-controller="CategoryManagement">GENRES MANAGEMENT</a>
+        <a class="link_type_a" asp-controller="UserManagement">USERS MANAGEMENT</a>
     }
-@*     <div class="header-searchbar">
-        <input type="search" asp-action="Search" placeholder="Search" />
-    </div> *@
 }
 
-@section HeaderContainer {
+@section HeaderSearch {
+    <div>test</div>
+}
+
+@section HeaderContent {
     @if (Model.User.Username == null)
     {
-        <a class="header-login" asp-controller="Login">LogIn</a>
-        <a class="header-registration" asp-controller="Registration">SignUp</a>
+        <a class="link_type_b" asp-controller="Login">LogIn</a>
+        <a class="link_type_c" asp-controller="Registration">SignUp</a>
     }
     else
     {
-        <p class="header-username">hello, @Model.User.Username!</p>
-        <a class="header-logout" asp-action="Logout">LogOut</a>
+        <p class="display_username">hello, @Model.User.Username!</p>
+        <a class="link_type_c" asp-action="Logout">LogOut</a>
     }
 }
-
-<section class="main-content">
-    <h4 class="main-text">FEATURED GENRES</h4>
-    <div class="pagination-container">
-        <div class="pagination-arrow">
-            @if (Model.Pagination.HasPreviousPage)
-            {
-                <a href="?pageNumber=@(Model.Pagination.CurrentPage - 1)">&lt;</a>
-            }
-        </div>
-        <div class="category-item-container">
-            @foreach (var category in Model.Categories)
-            {
-                <div class="category-item" style="background-image: url('@category.PosterUrl')">
-                    <h3>@category.Genre</h3>
-                </div>
-            }
-        </div>
-        <div class="pagination-arrow">
-            @if (Model.Pagination.HasNextPage)
-            {
-                <a href="?pageNumber=@(Model.Pagination.CurrentPage + 1)">&gt;</a>
-            }
-        </div>
-    </div>
-</section>

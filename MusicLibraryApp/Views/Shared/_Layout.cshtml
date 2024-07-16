@@ -11,16 +11,21 @@
 </head>
 <body>
 	<header>
-		<div class="header-gradient-line"></div>
-		<div class="header-content">
-			<h2 class="header-text">TuneBox</h2>
-			<div class="header-navigation">
+		<div class="layout-gradient_line_decoration"></div>
+		<div class="layout-header-container">
+			<h2>TuneBox</h2>
+			<div class="layout-header-text @(IsSectionDefined("HeaderText") ? "" : "layout-header-no_text")">
+				@RenderSection("HeaderText", required: false)
+			</div>
+			<div class="layout-header-navigation @(IsSectionDefined("HeaderNavigation") ? "" : "layout-header-no_navigation")">
 				@RenderSection("HeaderNavigation", required: false)
 			</div>
-			<div class="header-container">
-				@RenderSection("HeaderContainer", required: false)
+			<div class="layout-header-search @(IsSectionDefined("HeaderSearch") ? "" : "layout-header-no_search")">
+				@RenderSection("HeaderSearch", required: false)
 			</div>
-
+			<div class="layout-header-content">
+				@RenderSection("HeaderContent", required: false)
+			</div>
 		</div>
 	</header>
 
