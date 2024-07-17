@@ -23,7 +23,7 @@ namespace MusicLibraryApp.Controllers
 			_tuneService = tuneService;
 		}
 
-		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 10)
+		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
 		{
 			var tunes = await _tuneService.GetAllAsync();
 			var categories = await _categoryService.GetAllAsync();
