@@ -1,0 +1,24 @@
+﻿@model MusicLibraryApp.Models.UserPage.UserCreateViewModel
+
+@section HeaderText {
+	<h2>ADD YOUR FAVOURITE MUSIC</h2>
+}
+
+@section HeaderContent {
+	<p class="display_username">hello, @Model.User.Username</p>
+	<a class="link_type_c" asp-action="Index">Back</a>
+}
+
+<section class="data-container">
+	<form asp-action="Create" method="post">
+		<input placeholder="Artist" asp-for="@Model.Tune.Performer" />
+		<span asp-validation-for="@Model.Tune.Performer" class="validation-message"></span>
+		<hr />
+		<input placeholder="Title" asp-for="@Model.Tune.Title" />
+		<span asp-validation-for="@Model.Tune.Title" class="validation-message"></span>
+		<hr />
+		<input placeholder="Confirm"/>
+		<hr />
+		<button class="login-button" asp-action="Registration">Sign Up</button>
+	</form>
+</section>

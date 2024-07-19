@@ -58,8 +58,8 @@ namespace MusicLibraryApp.BLL.Services
 				Title = modelDTO.Title,
 				FileUrl = modelDTO.FileUrl,
 				PosterUrl = modelDTO.PosterUrl,
-				IsAuthorized = false,
-				IsBlocked = false,
+				IsAuthorized = modelDTO.IsAuthorized,
+				IsBlocked = modelDTO.IsBlocked,
 				Category = modelDTO.Category,
 			};
 			await UnitOfWork.Tunes.CreateAsync(tune);

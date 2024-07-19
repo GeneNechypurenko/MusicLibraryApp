@@ -17,9 +17,9 @@ namespace MusicLibraryApp.BLL.Services
 				Id = modelDTO.Id,
 				Username = modelDTO.Username,
 				Password = modelDTO.Password,
-				IsAdmin = false,
-				IsAuthorized = false,
-				IsBlocked = false,
+				IsAdmin = modelDTO.IsAdmin,
+				IsAuthorized = modelDTO.IsAuthorized,
+				IsBlocked = modelDTO.IsBlocked,
 			};
 			await UnitOfWork.Users.CreateAsync(user);
 			await UnitOfWork.SaveAsync();

@@ -68,16 +68,16 @@ namespace MusicLibraryApp.Controllers
 			}
 		}
 
-		public IActionResult Create()
-		{
-			string? username = HttpContext.Session.GetString("Username");
-			AdminTuneViewModel viewModel = new AdminTuneViewModel
-			{
-				Username = username,
-				Tune = new TuneViewModel()
-			};
-			return View(viewModel);
-		}
+		//public IActionResult Create()
+		//{
+		//	string? username = HttpContext.Session.GetString("Username");
+		//	AdminTuneViewModel viewModel = new AdminTuneViewModel
+		//	{
+		//		Username = username,
+		//		Tune = new TuneViewModel()
+		//	};
+		//	return View(viewModel);
+		//}
 
 		public IActionResult Logout()
 		{
