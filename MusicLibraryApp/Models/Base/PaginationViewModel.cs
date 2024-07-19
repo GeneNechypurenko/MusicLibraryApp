@@ -1,4 +1,4 @@
-﻿namespace MusicLibraryApp.Models
+﻿namespace MusicLibraryApp.Models.Base
 {
     public class PaginationViewModel
     {

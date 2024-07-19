@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
 
-namespace MusicLibraryApp.Models
+namespace MusicLibraryApp.Models.Base
 {
     public class FilterViewModel<T>
     {

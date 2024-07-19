@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
+using MusicLibraryApp.Models.Base;
 
 namespace MusicLibraryApp.Models.HomePage
 {
-	public class HomeFilterViewModel : FilterViewModel<CategoryDTO>
+    public class HomeFilterViewModel : FilterViewModel<CategoryDTO>
 	{
 		public HomeFilterViewModel(List<CategoryDTO> items, int selectedItemId, string search)
 			: base(items, selectedItemId, search)

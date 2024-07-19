@@ -29,6 +29,10 @@ namespace MusicLibraryApp.Controllers
                     {
                         return RedirectToAction("Index", "Admin");
                     }
+                    else
+                    {
+                        return RedirectToAction("Index", "User");
+                    }    
                 }
                 else
                 {
