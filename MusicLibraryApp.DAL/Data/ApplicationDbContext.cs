@@ -148,7 +148,7 @@ namespace MusicLibraryApp.DAL.Data
 					FileUrl = defaultTuneFileUrl,
 					PosterUrl = defaultTunePosterUrl,
 					IsAuthorized = true,
-					IsBlocked = false,
+					IsBlocked = true,
 					CategoryId = 8
 				});
 			}
@@ -161,7 +161,7 @@ namespace MusicLibraryApp.DAL.Data
 					Title = $"Sandwitch Blues {i + 1}",
 					FileUrl = defaultTuneFileUrl,
 					PosterUrl = defaultTunePosterUrl,
-					IsAuthorized = true,
+					IsAuthorized = false,
 					IsBlocked = false,
 					CategoryId = 9
 				});

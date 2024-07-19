@@ -38,6 +38,7 @@ main {
 .link_type_a,
 .link_type_b,
 .link_type_c,
+.link_type_d,
 .display_username {
     height: auto;
     width: auto;
@@ -92,6 +93,17 @@ main {
         padding: 10px;
     }
 
+.link_type_d {
+    color: #00ffd5;
+}
+
+    .link_type_d:hover {
+        border-radius: 10px;
+        background: #00ffd5;
+        color: black;
+        padding: 10px;
+    }
+
 .display_username {
     color: #00ffd5;
 }
@@ -120,7 +132,8 @@ main {
     .layout-header-container h2,
     .layout-header-text h2,
     .layout-header-text,
-    .layout-header-search {
+    .layout-header-search,
+    .layout-main-container {
         display: flex;
         justify-content: center;
         align-content: center;
@@ -175,13 +188,36 @@ main {
     display: none;
 }
 
+.layout-main-container {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    bottom: 20px;
+}
 
-/* ----- Home region ----- */
+    .layout-main-container::before,
+    .layout-main-container::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(45deg, #ff7300, #00ffd5);
+    }
 
-.home-main-container,
-.home-filter h2,
-.home-filter form,
-.home-tune-container {
+    .layout-main-container::before {
+        top: 0;
+    }
+
+    .layout-main-container::after {
+        bottom: 0;
+    }
+
+/* ----- Home, Admin, User -> Index region ----- */
+
+.filter h2,
+.filter form,
+.tune-container {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -189,41 +225,33 @@ main {
     flex-wrap: wrap;
 }
 
-.home-main-container {
-    position: relative;
-    height: 80vh;
+.layout-main-container section {
+    height: calc(100% - 120px);
     width: 100%;
-    bottom: 20px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
-    .home-main-container section {
-        height: calc(100% - 120px);
-        width: 100%;
+    .layout-main-container section .pagination {
+        height: 100%;
+        width: calc(20% - 4rem);
+        border-radius: 1rem;
+        background: #000000cc;
+        color: #fff;
+        margin-left: 2rem;
+        margin-right: 2rem;
         display: flex;
+        flex-direction: column;
         align-content: center;
         justify-content: center;
         flex-wrap: wrap;
+        transition: 0.2s;
     }
 
-        .home-main-container section .home-pagination {
-            height: 100%;
-            width: calc(20% - 4rem);
-            border-radius: 1rem;
-            background: #000000cc;
-            color: #fff;
-            margin-left: 2rem;
-            margin-right: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            transition: 0.2s;
+        .layout-main-container section .pagination:hover {
+            background: #77777790;
         }
-
-            .home-main-container section .home-pagination:hover {
-                background: #77777790;
-            }
 
 .page-back {
     width: 25px;
@@ -263,7 +291,7 @@ main {
         transform: rotate(315deg);
     }
 
-.home-tune-container {
+.tune-container {
     height: 100%;
     width: 60%;
     gap: 2rem;
@@ -271,25 +299,7 @@ main {
     overflow-x: hidden;
 }
 
-.home-main-container::before,
-.home-main-container::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(45deg, #ff7300, #00ffd5);
-}
-
-.home-main-container::before {
-    top: 0;
-}
-
-.home-main-container::after {
-    bottom: 0;
-}
-
-.home-filter {
+.filter {
     height: 60px;
     margin-bottom: 20px;
     display: flex;
@@ -297,7 +307,7 @@ main {
     justify-content: flex-start;
 }
 
-    .home-filter h2, .home-filter form {
+    .filter h2, .filter form {
         height: 100%;
         background: #000000cc;
         color: #fff;
@@ -306,15 +316,18 @@ main {
         font-weight: bold;
     }
 
-    .home-filter h2 {
+    .filter h2 {
         width: 30%;
     }
 
-    .home-filter form {
+    .filter form {
+        display: flex;
+        align-content: space-evenly;
+        justify-content: center;
         width: 70%;
     }
 
-        .home-filter form select {
+        .filter form select {
             height: 80%;
             width: 20%;
             background: #000000cc;
@@ -325,7 +338,7 @@ main {
             border: none;
         }
 
-.home-tune-box {
+.tune-box {
     height: 5rem;
     width: 100%;
     display: flex;
@@ -336,18 +349,18 @@ main {
     overflow: hidden;
 }
 
-    .home-tune-box .tune-item-image {
+    .tune-box .tune-item-image {
         height: 100%;
         width: 30%;
     }
 
-        .home-tune-box .tune-item-image img {
+        .tune-box .tune-item-image img {
             height: 100%;
             width: 100%;
             object-fit: cover;
         }
 
-    .home-tune-box .home-tune-box-content {
+    .tune-box .tune-box-content {
         height: 100%;
         width: 100%;
         display: flex;
@@ -357,7 +370,7 @@ main {
         flex-wrap: wrap;
     }
 
-        .home-tune-box .home-tune-box-content .tune-item-description {
+        .tune-box .tune-box-content .tune-item-description {
             height: 50%;
             width: 100%;
             display: flex;
@@ -365,7 +378,7 @@ main {
             justify-content: center;
         }
 
-            .home-tune-box .home-tune-box-content .tune-item-description p {
+            .tune-box .tune-box-content .tune-item-description p {
                 height: 100%;
                 width: 100%;
                 color: black;
@@ -378,49 +391,84 @@ main {
                 flex-wrap: wrap;
             }
 
-    .home-tune-box .tune-item-audio {
+            .tune-box .tune-box-content .tune-item-description a {
+                height: 100%;
+                width: 100%;
+                color: #fff;
+                background: #000000cc;
+                font-weight: bold;
+                text-align: center;
+                margin: 0;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 3px;
+                border-top-right-radius: 1rem;
+                text-decoration: none;
+                transition: 0.8s;
+            }
+
+                .tune-box .tune-box-content .tune-item-description a:hover {
+                    padding: 8px;
+                    color: black;
+                    background: #ffffff90;
+                    text-decoration: underline;
+                }
+
+    .tune-box .tune-item-audio {
         height: 50%;
         width: 100%;
     }
 
-        .home-tune-box .tune-item-audio audio {
+        .tune-box .tune-item-audio audio {
             width: 100%;
             height: 100%;
             outline: none;
         }
 
-            .home-tune-box .tune-item-audio audio::-webkit-media-controls-enclosure {
+            .tune-box .tune-item-audio audio::-webkit-media-controls-enclosure {
                 background: none;
             }
 
-            .home-tune-box .tune-item-audio audio::-webkit-media-controls-play-button,
-            .home-tune-box .tune-item-audio audio::-webkit-media-controls-pause-button,
-            .home-tune-box .tune-item-audio audio::-webkit-media-controls-mute-button {
+            .tune-box .tune-item-audio audio::-webkit-media-controls-play-button,
+            .tune-box .tune-item-audio audio::-webkit-media-controls-pause-button,
+            .tune-box .tune-item-audio audio::-webkit-media-controls-mute-button {
                 outline: 1px black solid;
                 border-radius: 50%;
             }
 
-.home-pagination {
+.pagination {
     height: 40px;
+}
+
+.not_found {
+    height: 100%;
+    width: 100%;
+    background: #000000cc;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 1rem;
 }
 
 
 /* ----- Login and Registration regions ----- */
 
 
-.login-main-container {
-    height: 400px;
-    width: 300px;
-    background: #ffffff20;
-    border-radius: 20px;
-    box-shadow: 0 0px 10px #ffffff50;
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-    padding: 20px;
+.data-container {
+    height: 100%;
+    width: 100%;
+    background: #000000cc;
+    box-shadow: 0 .5rem 1rem black;
 }
 
-    .login-main-container,
-    .login-main-container form {
+    .data-container,
+    .data-container form {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -428,36 +476,95 @@ main {
         flex-wrap: wrap;
     }
 
-        .login-main-container form {
-            height: 100%;
-            width: 100%;
-            gap: 20px;
+        .data-container form {
+            height: 80%;
+            width: 80%;
+            border: 2px solid #ffffff20;
+            border-radius: 1rem;
         }
 
-            .login-main-container form input {
-                height: auto;
-                width: auto;
-                border-radius: 20px;
-                backdrop-filter: blur(5px);
-                background: #ffffff20;
-                outline-style: none;
-                border: 1px #11111120 solid;
-                padding: 6px;
-                font-weight: bold;
-                text-align: center;
+        .data-container hr {
+            color: #fff;
+        }
+
+        .data-container form input {
+            width: 30%;
+            border-radius: 10px;
+            background: #fff;
+            outline-style: none;
+            padding: 6px;
+            font-weight: bold;
+            text-align: center;
+            outline: none;
+            position: relative;
+        }
+
+            .data-container form input::placeholder {
+                color: #777;
             }
 
-            .login-main-container form button {
-                height: auto;
-                width: auto;
-                border-radius: 20px;
-                background: linear-gradient(135deg, #ff7300, #00ffd5);
-                padding: 6px;
-                font-weight: bold;
-                text-align: center;
-                color: black;
+        .data-container form span {
+            width: 30%;
+            height: 20px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .data-container form button {
+            padding: 0.6em 2em;
+            border: none;
+            outline: none;
+            color: rgb(255, 255, 255);
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+            .data-container form button:before {
+                content: "";
+                background: linear-gradient( 45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000 );
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                background-size: 400%;
+                z-index: -1;
+                filter: blur(5px);
+                -webkit-filter: blur(5px);
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                animation: glowing-button 20s linear infinite;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 10px;
             }
 
-            .login-main-container form input::placeholder {
-                color: #fff;
-            }
+@keyframes glowing-button {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.data-container form button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}

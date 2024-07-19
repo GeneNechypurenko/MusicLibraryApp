@@ -1,0 +1,29 @@
+﻿@model MusicLibraryApp.Models.AccountPage.RegistrationViewModel
+
+@section HeaderText {
+    <h2>CREATE NEW ACCOUNT</h2>
+}
+
+@section HeaderContent {
+    <a asp-action="Login" class="link_type_b">LogIn</a>
+    <a asp-action="Home" class="link_type_c">Home</a>
+}
+
+<section class="data-container">
+    <form asp-action="Registration" method="post">
+        <input placeholder="Username" asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+        <hr />
+        <input placeholder="Password" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+        <hr />
+        <input placeholder="Confirm" asp-for="Confirmation" />
+        <span asp-validation-for="Confirmation"></span>
+        <hr />
+        <button class="login-button" type="submit">Sign Up</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
