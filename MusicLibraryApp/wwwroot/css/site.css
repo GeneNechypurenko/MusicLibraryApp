@@ -108,6 +108,79 @@ main {
     color: #00ffd5;
 }
 
+.confirm-button {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+    .confirm-button:before {
+        content: "";
+        background: linear-gradient( 45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000 );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-button 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+@keyframes glowing-button {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.confirm-button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+    input[type=file]::file-selector-button:hover {
+        background: #333;
+    }
+
 /* ----- Layout region ----- */
 
 .layout-gradient_line_decoration {
@@ -457,7 +530,7 @@ main {
 }
 
 
-/* ----- Login and Registration regions ----- */
+/* ----- Account: Login and Registration regions ----- */
 
 
 .data-container {
@@ -511,60 +584,104 @@ main {
             text-align: center;
         }
 
-        .data-container form button {
-            padding: 0.6em 2em;
-            border: none;
-            outline: none;
-            color: rgb(255, 255, 255);
-            background: #111;
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
+/* ----- User - Create region ----- */
+
+.user-create-data-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    background: #000000cc;
+    box-shadow: 0 .5rem 1rem black;
+}
+
+.user-create-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 80%;
+    width: 80%;
+    border: 2px solid #ffffff20;
+    border-radius: 1rem;
+}
+
+.user-create-group-section {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    height: 80%;
+    width: 100%;
+}
+
+.user-create-button-section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 20%;
+    width: 100%;
+    border-top: 2px solid #ffffff20;
+}
+
+    .user-create-button-section button {
+        width: 40%;
+    }
+
+    .user-create-input-group {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        gap: 10px;
+        height: 100%;
+        width: 30%;
+    }
+
+        .user-create-input-group input,
+        .user-create-input-group select {
+            width: 100%;
             border-radius: 10px;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
+            background: #fff;
+            outline-style: none;
+            padding: 6px;
+            font-weight: bold;
+            text-align: center;
+            outline: none;
+            position: relative;
         }
 
-            .data-container form button:before {
-                content: "";
-                background: linear-gradient( 45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000 );
-                position: absolute;
-                top: -2px;
-                left: -2px;
-                background-size: 400%;
-                z-index: -1;
-                filter: blur(5px);
-                -webkit-filter: blur(5px);
-                width: calc(100% + 4px);
-                height: calc(100% + 4px);
-                animation: glowing-button 20s linear infinite;
-                transition: opacity 0.3s ease-in-out;
-                border-radius: 10px;
-            }
+        .user-create-input-group input::placeholder {
+            color: #777;
+        }
 
-@keyframes glowing-button {
-    0% {
-        background-position: 0 0;
+    .user-create-input-group hr {
+        color: #fff;
     }
 
-    50% {
-        background-position: 400% 0;
+    .user-create-input-group span {
+        width: 100%;
+        height: 20px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
     }
 
-    100% {
-        background-position: 0 0;
-    }
-}
+        .user-create-input-group p {
+            width: 100%;
+            height: 34px;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            background: #fff;
+            padding: 4px;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            margin: 0;
+        }
 
-.data-container form button:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #222;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-}

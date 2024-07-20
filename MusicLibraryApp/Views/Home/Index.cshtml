@@ -24,7 +24,6 @@
 			<a asp-action="Index"
 			   asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
 			   asp-route-selectedGenreId="@(Model.Filter.SelectedItemId)"
-			   asp-route-search="@(Model.Filter.Search)"
 			   class="page-back">
 			</a>
 		}
@@ -65,7 +64,6 @@
 			<a asp-action="Index"
 			   asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
 			   asp-route-selectedGenreId="@(Model.Filter.SelectedItemId)"
-			   asp-route-search="@(Model.Filter.Search)"
 			   class="page-forward">
 			</a>
 		}

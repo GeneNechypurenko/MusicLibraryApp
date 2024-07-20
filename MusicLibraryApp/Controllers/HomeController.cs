@@ -17,7 +17,7 @@ namespace MusicLibraryApp.Controllers
 			_tuneService = tuneService;
 		}
 
-		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
+		public async Task<IActionResult> Index(int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
 		{
 			var tunes = await _tuneService.GetAllAsync();
 			var categories = await _categoryService.GetAllAsync();
@@ -31,16 +31,13 @@ namespace MusicLibraryApp.Controllers
 				tunes = tunes.Where(t => t.Category.Id == selectedGenreId && !t.IsBlocked && t.IsAuthorized).ToList();
 			}
 
-			if (!string.IsNullOrEmpty(search))
-				tunes = tunes.Where(t => t.Title.Contains(search));
-
 			var totalItems = tunes.Count();
 			var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
 			HomeIndexViewModel viewModel = new HomeIndexViewModel(
 				tunesOnPage,
-				new PaginationViewModel(totalItems, pageNumber, pageSize),
-				new HomeFilterViewModel(categories.ToList(), selectedGenreId, search));
+				new PaginationModel(totalItems, pageNumber, pageSize),
+				new HomeFilterViewModel(categories.ToList(), selectedGenreId));
 
 			return View(viewModel);
 		}

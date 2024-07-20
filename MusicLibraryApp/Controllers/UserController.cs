@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.DAL.Models;
 using MusicLibraryApp.Models.AdminPage;
 using MusicLibraryApp.Models.Base;
 using MusicLibraryApp.Models.UserPage;
@@ -12,15 +13,18 @@ namespace MusicLibraryApp.Controllers
 		private readonly IService<UserDTO> _userService;
 		private readonly IService<CategoryDTO> _categoryService;
 		private readonly IService<TuneDTO> _tuneService;
+		private readonly IWebHostEnvironment _environment;
 
-		public UserController(IService<UserDTO> userService, IService<CategoryDTO> categoryService, IService<TuneDTO> tuneService)
+		public UserController(IService<UserDTO> userService, IService<CategoryDTO> categoryService, IService<TuneDTO> tuneService,
+			IWebHostEnvironment environment)
 		{
 			_userService = userService;
 			_categoryService = categoryService;
 			_tuneService = tuneService;
+			_environment = environment;
 		}
 
-		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
+		public async Task<IActionResult> Index(int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
 		{
 			var user = await _userService.GetAsync(HttpContext.Session.GetString("Username")!);
 
@@ -38,19 +42,14 @@ namespace MusicLibraryApp.Controllers
 					tunes = tunes.Where(t => t.Category?.Id == selectedGenreId && !t.IsBlocked && t.IsAuthorized).ToList();
 				}
 
-				if (!string.IsNullOrEmpty(search))
-				{
-					tunes = tunes.Where(t => t.Title!.Contains(search)).ToList();
-				}
-
 				var totalItems = tunes.Count();
 				var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
 				UserIndexViewModel viewModel = new UserIndexViewModel(
 					tunesOnPage,
-					new PaginationViewModel(totalItems, pageNumber, pageSize),
-					new AdminTuneFilterViewModel(categories.ToList(), selectedGenreId, search),
-					new UserViewModel(user),
+					new PaginationModel(totalItems, pageNumber, pageSize),
+					new AdminTuneFilterViewModel(categories.ToList(), selectedGenreId),
+					new UserModel(user),
 					categories);
 
 				return View(viewModel);
@@ -61,18 +60,60 @@ namespace MusicLibraryApp.Controllers
 			}
 		}
 
-		public async Task<IActionResult> Create()
+		public async Task<IActionResult> Create(int selectedGenreId = 0)
 		{
 			var user = await _userService.GetAsync(HttpContext.Session.GetString("Username")!);
+			var categories = await _categoryService.GetAllAsync();
 			if (user != null && !user.IsAdmin && user.IsAuthorized && !user.IsBlocked)
 			{
-				UserCreateViewModel viewModel = new UserCreateViewModel(new UserViewModel(user), new TuneViewModel());
+				UserCreateViewModel viewModel = new UserCreateViewModel(
+					new UserModel(user),
+					new TuneModel(),
+					new FilterModel<CategoryDTO>(categories.ToList(), selectedGenreId));
 				return View(viewModel);
 			}
 			else
 			{
 				return RedirectToAction("Index", "Home");
 			}
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create(UserCreateViewModel model)
+		{
+			string fileSavePath = Path.Combine("res/Tunes/Upload", model.Tune.File.FileName);
+			string posterSavePath = Path.Combine("res/Tunes/Posters", model.Tune.Poster.FileName);
+
+			using (var fs = new FileStream(Path.Combine(_environment.WebRootPath, fileSavePath), FileMode.Create))
+			{
+				await model.Tune.File.CopyToAsync(fs);
+			}
+
+			using (var ps = new FileStream(Path.Combine(_environment.WebRootPath, posterSavePath), FileMode.Create))
+			{
+				await model.Tune.Poster.CopyToAsync(ps);
+			}
+
+			CategoryDTO selectedCategory = await _categoryService.GetAsync(model.Tune.CategoryId);
+			TuneDTO newTune = new TuneDTO
+			{
+				Performer = model.Tune.Performer,
+				Title = model.Tune.Title,
+				FileUrl = "/" + fileSavePath,
+				PosterUrl = "/" + posterSavePath,
+				IsAuthorized = true,
+				IsBlocked = false,
+				Category = new Category
+				{
+					Id = selectedCategory.Id,
+					Genre = selectedCategory.Genre,
+					PosterUrl = selectedCategory.PosterUrl
+				}
+			};
+			await _tuneService.CreateAsync(newTune);
+
+			return RedirectToAction("Index");
 		}
 
 		public IActionResult Logout()

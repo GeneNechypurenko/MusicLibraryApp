@@ -1,4 +1,4 @@
-﻿@model MusicLibraryApp.Models.AccountPage.RegistrationViewModel
+﻿@model MusicLibraryApp.Models.AccountPage.RegistrationModel
 
 @section HeaderText {
     <h2>CREATE NEW ACCOUNT</h2>
@@ -9,7 +9,7 @@
     <a asp-action="Home" class="link_type_c">Home</a>
 }
 
-<section class="data-container">
+<div class="data-container">
     <form asp-action="Registration" method="post">
         <input placeholder="Username" asp-for="Username" />
         <span asp-validation-for="Username"></span>
@@ -20,9 +20,9 @@
         <input placeholder="Confirm" asp-for="Confirmation" />
         <span asp-validation-for="Confirmation"></span>
         <hr />
-        <button class="login-button" type="submit">Sign Up</button>
+        <button class="confirm-button" type="submit">Sign Up</button>
     </form>
-</section>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

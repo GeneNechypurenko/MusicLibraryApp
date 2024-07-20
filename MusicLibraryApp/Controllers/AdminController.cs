@@ -19,7 +19,7 @@ namespace MusicLibraryApp.Controllers
 			_tuneService = tuneService;
 		}
 
-		public async Task<IActionResult> Index(string search, int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
+		public async Task<IActionResult> Index(int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
 		{
 			var user = await _userService.GetAsync(HttpContext.Session.GetString("Username")!);
 
@@ -45,19 +45,14 @@ namespace MusicLibraryApp.Controllers
 					tunes = tunes.Where(t => t.Category?.Id == selectedGenreId && !t.IsBlocked && t.IsAuthorized).ToList();
 				}
 
-				if (!string.IsNullOrEmpty(search))
-				{
-					tunes = tunes.Where(t => t.Title!.Contains(search)).ToList();
-				}
-
 				var totalItems = tunes.Count();
 				var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
 				AdminIndexViewModel viewModel = new AdminIndexViewModel(
 					tunesOnPage,
-					new PaginationViewModel(totalItems, pageNumber, pageSize),
-					new AdminTuneFilterViewModel(categories.ToList(), selectedGenreId, search),
-					new UserViewModel(user),
+					new PaginationModel(totalItems, pageNumber, pageSize),
+					new AdminTuneFilterViewModel(categories.ToList(), selectedGenreId),
+					new UserModel(user),
 					categories);
 
 				return View(viewModel);

@@ -2,7 +2,7 @@
 
 namespace MusicLibraryApp.Models.AccountPage
 {
-    public class RegistrationViewModel
+    public class RegistrationModel
     {
         [Required(ErrorMessage = "Username is required")]
         [RegularExpression(@"^(?!admin$|Admin$).*", ErrorMessage = "Username cannot be 'Admin' or 'admin'")]

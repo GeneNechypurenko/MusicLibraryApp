@@ -2,13 +2,13 @@
 
 namespace MusicLibraryApp.Models.Base
 {
-    public class UserViewModel
+    public class UserModel
     {
         public string? Username { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsAuthorized { get; set; }
         public bool IsBlocked { get; set; }
-        public UserViewModel(UserDTO user)
+        public UserModel(UserDTO user)
         {
             Username = user.Username;
             IsAdmin = user.IsAdmin;

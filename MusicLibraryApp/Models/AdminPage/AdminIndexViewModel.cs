@@ -8,7 +8,7 @@ namespace MusicLibraryApp.Models.AdminPage
 {
     public class AdminIndexViewModel : UserIndexViewModel
 	{
-		public AdminIndexViewModel(IEnumerable<TuneDTO> tunes, PaginationViewModel page, HomeFilterViewModel filter,
-			UserViewModel user, IEnumerable<CategoryDTO> categories) : base(tunes, page, filter, user, categories) { }
+		public AdminIndexViewModel(IEnumerable<TuneDTO> tunes, PaginationModel page, HomeFilterViewModel filter,
+			UserModel user, IEnumerable<CategoryDTO> categories) : base(tunes, page, filter, user, categories) { }
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace MusicLibraryApp.Models.Base
 {
-    public class CategoryViewModel
+    public class CategoryModel
     {
         public string Genre { get; set; }
         public string PosterUrl { get; set; }

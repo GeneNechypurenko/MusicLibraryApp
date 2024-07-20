@@ -3,11 +3,11 @@ using MusicLibraryApp.Models.HomePage;
 
 namespace MusicLibraryApp.Models.Base
 {
-    public class IndexViewModel
+    public class IndexModel
     {
         public IEnumerable<TuneDTO> Tunes { get; set; }
-        public PaginationViewModel Page { get; set; }
-        public IndexViewModel(IEnumerable<TuneDTO> tunes, PaginationViewModel page, HomeFilterViewModel filter)
+        public PaginationModel Page { get; set; }
+        public IndexModel(IEnumerable<TuneDTO> tunes, PaginationModel page, FilterModel<CategoryDTO> filter)
         {
             Tunes = tunes;
             Page = page;

@@ -2,7 +2,7 @@
 
 namespace MusicLibraryApp.Models.AccountPage
 {
-    public class loginViewModel
+    public class LoginModel
     {
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }

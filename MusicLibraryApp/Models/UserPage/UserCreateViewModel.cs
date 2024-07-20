@@ -1,16 +1,19 @@
 ﻿using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.Models.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace MusicLibraryApp.Models.UserPage
 {
-	public class UserCreateViewModel
-	{
-		public UserViewModel User { get; set; }
-		public TuneViewModel Tune { get; set; }
-		public UserCreateViewModel(UserViewModel user, TuneViewModel tune)
-		{
-			User = user;
-			Tune = tune;
-		}
-	}
+    public class UserCreateViewModel
+    {
+        public UserModel User { get; set; }
+        public TuneModel Tune { get; set; }
+        public FilterModel<CategoryDTO> Category { get; set; }
+        public UserCreateViewModel(UserModel user, TuneModel tune, FilterModel<CategoryDTO> filter)
+        {
+            User = user;
+            Tune = tune;
+            Category = filter;
+        }
+    }
 }

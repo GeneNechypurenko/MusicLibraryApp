@@ -6,10 +6,10 @@ namespace MusicLibraryApp.Models.UserPage
 {
     public class UserIndexViewModel : HomeIndexViewModel
 	{
-		public UserViewModel User { get; set; }
+		public UserModel User { get; set; }
 		public IEnumerable<CategoryDTO> Categories { get; set; }
-		public UserIndexViewModel(IEnumerable<TuneDTO> tunes, PaginationViewModel page, HomeFilterViewModel filter,
-			UserViewModel user, IEnumerable<CategoryDTO> categories)
+		public UserIndexViewModel(IEnumerable<TuneDTO> tunes, PaginationModel page, HomeFilterViewModel filter,
+			UserModel user, IEnumerable<CategoryDTO> categories)
 			: base(tunes, page, filter)
 		{
 			User = user;
