@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MusicLibraryApp.Models.AccountPage
+namespace MusicLibraryApp.Models.Account
 {
     public class RegistrationModel
     {

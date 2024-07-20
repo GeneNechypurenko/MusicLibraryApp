@@ -4,7 +4,6 @@
 	{
 		public int Id { get; set; }
 		public string? Genre { get; set; }
-		public string? PosterUrl { get; set; }
 		public ICollection<Tune>? Tunes { get; set; }
 	}
 }

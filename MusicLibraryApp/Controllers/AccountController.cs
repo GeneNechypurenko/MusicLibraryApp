@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
-using MusicLibraryApp.Models.AccountPage;
+using MusicLibraryApp.Models.Account;
 
 namespace MusicLibraryApp.Controllers
 {
@@ -23,15 +23,11 @@ namespace MusicLibraryApp.Controllers
 				var user = userList.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
 				if (user != null)
 				{
-					HttpContext.Session.SetString("Username", user.Username);
+					HttpContext.Session.SetInt32("UserId", user.Id);
 
-					if (user.IsAdmin)
+					if (!user.IsBlocked)
 					{
-						return RedirectToAction("Index", "Admin");
-					}
-					else
-					{
-						return RedirectToAction("Index", "User");
+						return RedirectToAction("Index", "Home");
 					}
 				}
 			}

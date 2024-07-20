@@ -18,7 +18,7 @@ namespace MusicLibraryApp.BLL.Services
 			return new TuneDTO
 			{
 				Id = tune.Id,
-				Performer = tune.Performer,
+				Artist = tune.Performer,
 				Title = tune.Title,
 				FileUrl = tune.FileUrl,
 				PosterUrl = tune.PosterUrl,
@@ -34,7 +34,7 @@ namespace MusicLibraryApp.BLL.Services
             return new TuneDTO
             {
                 Id = tune.Id,
-                Performer = tune.Performer,
+                Artist = tune.Performer,
                 Title = tune.Title,
                 FileUrl = tune.FileUrl,
                 PosterUrl = tune.PosterUrl,
@@ -54,7 +54,7 @@ namespace MusicLibraryApp.BLL.Services
 			var tune = new Tune
 			{
 				Id = modelDTO.Id,
-				Performer = modelDTO.Performer,
+				Performer = modelDTO.Artist,
 				Title = modelDTO.Title,
 				FileUrl = modelDTO.FileUrl,
 				PosterUrl = modelDTO.PosterUrl,
@@ -71,7 +71,7 @@ namespace MusicLibraryApp.BLL.Services
 			var tune = new Tune
 			{
 				Id = modelDTO.Id,
-				Performer = modelDTO.Performer,
+				Performer = modelDTO.Artist,
 				Title = modelDTO.Title,
 				FileUrl = modelDTO.FileUrl,
 				PosterUrl = modelDTO.PosterUrl,

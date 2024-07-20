@@ -11,9 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\res\Category\Posters\default_poster.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\res\Tunes\Posters\default_poster.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

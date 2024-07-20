@@ -6,7 +6,6 @@ namespace MusicLibraryApp.BLL.ModelsDTO
 	{
 		public int Id { get; set; }
 		public string? Genre { get; set; }
-		public string? PosterUrl { get; set; }
 		public IEnumerable<Tune>? Tunes { get; set; }
 	}
 }

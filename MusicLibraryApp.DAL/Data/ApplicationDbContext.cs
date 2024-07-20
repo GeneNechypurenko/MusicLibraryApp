@@ -25,19 +25,8 @@ namespace MusicLibraryApp.DAL.Data
 				IsBlocked = false
 			});
 
-			string defaultPosterUrl = "res/Category/Posters/default_poster.jpg";
 			string defaultTunePosterUrl = "res/Tunes/Posters/default_poster.jpg";
 			string defaultTuneFileUrl = "res/Tunes/Upload/default_tune.mp3";
-
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 1, Genre = "Electronic", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 2, Genre = "Hip-Hop", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 3, Genre = "Rock", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 4, Genre = "Classical", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 5, Genre = "Pop", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 6, Genre = "Jazz", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 7, Genre = "Folk", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 8, Genre = "Cinematic", PosterUrl = defaultPosterUrl });
-			modelBuilder.Entity<Category>().HasData(new Category { Id = 9, Genre = "Reggae", PosterUrl = defaultPosterUrl });
 
 			var tunes = new List<Tune>();
 			for (int i = 0; i < 10; i++)

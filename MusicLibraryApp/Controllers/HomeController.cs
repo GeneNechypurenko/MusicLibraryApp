@@ -1,117 +1,130 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
-using MusicLibraryApp.DAL.Models;
-using MusicLibraryApp.Models.Base;
+using MusicLibraryApp.Models.Home;
 
 namespace MusicLibraryApp.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly IService<CategoryDTO> _categoryService;
-		private readonly IService<TuneDTO> _tuneService;
+		private readonly IService<UserDTO> _user;
+		private readonly IService<CategoryDTO> _category;
+		private readonly IService<TuneDTO> _tune;
+		private readonly IWebHostEnvironment _web;
 
-		public HomeController(IService<CategoryDTO> categoryService, IService<UserDTO> userService, IService<TuneDTO> tuneService)
+		public HomeController(IService<UserDTO> user, IService<CategoryDTO> category, IService<TuneDTO> tune,
+			IWebHostEnvironment web)
 		{
-			_categoryService = categoryService;
-			_tuneService = tuneService;
+			_user = user;
+			_category = category;
+			_tune = tune;
+			_web = web;
 		}
 
-		public async Task<IActionResult> Index(int selectedGenreId = 0, int pageNumber = 1, int pageSize = 5)
-		{
-			var user = await _userService.GetAsync(HttpContext.Session.GetString("Username")!);
+        public async Task<IActionResult> Index(int selected = 0, int pageNumber = 1, int pageSize = 5)
+        {
+            UserDTO user = null!;
 
-			if (user != null && !user.IsAdmin && !user.IsBlocked)
-			{
-				var categories = await _categoryService.GetAllAsync();
-				var tunes = await _tuneService.GetAllAsync();
+            var categories = await _category.GetAllAsync();
+            var categoriesList = categories.ToList();
+            categoriesList.Insert(0, new CategoryDTO { Genre = "All Genres", Id = 0 });
 
-				if (selectedGenreId == 0)
-				{
-					tunes = tunes.Where(t => t.IsAuthorized && !t.IsBlocked).ToList();
-				}
-				else
-				{
-					tunes = tunes.Where(t => t.Category?.Id == selectedGenreId && !t.IsBlocked && t.IsAuthorized).ToList();
-				}
+            if (HttpContext.Session.GetInt32("UserId").HasValue)
+            {
+                user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
 
-				var totalItems = tunes.Count();
-				var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                if (user.IsAdmin)
+                {
+                    categoriesList.Insert(1, new CategoryDTO { Genre = "New", Id = -2 });
+                    categoriesList.Insert(2, new CategoryDTO { Genre = "Blocked", Id = -1 });
+                }
+            }
 
-				UserIndexViewModel viewModel = new UserIndexViewModel(
-					tunesOnPage,
-					new PaginationModel(totalItems, pageNumber, pageSize),
-					new AdminTuneFilterViewModel(categories.ToList(), selectedGenreId),
-					new UserModel(user),
-					categories);
+            var filter = new FilterModel(categoriesList, selected);
 
-				return View(viewModel);
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-		}
+            var tunes = await _tune.GetAllAsync();
 
-		public async Task<IActionResult> Create(int selectedGenreId = 0)
-		{
-			var user = await _userService.GetAsync(HttpContext.Session.GetString("Username")!);
-			var categories = await _categoryService.GetAllAsync();
-			if (user != null && !user.IsAdmin && user.IsAuthorized && !user.IsBlocked)
-			{
-				UserCreateViewModel viewModel = new UserCreateViewModel(
-					new UserModel(user),
-					new TuneModel(),
-					new FilterModel<CategoryDTO>(categories.ToList(), selectedGenreId));
-				return View(viewModel);
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-		}
+            switch (selected)
+            {
+                case -2:
+                    tunes = tunes.Where(t => !t.IsAuthorized).ToList();
+                    break;
+                case -1:
+                    tunes = tunes.Where(t => t.IsBlocked).ToList();
+                    break;
+                case 0:
+                    tunes = tunes.Where(t => t.IsAuthorized && !t.IsBlocked).ToList();
+                    break;
+                default:
+                    tunes = tunes.Where(t => t.Category?.Id == selected && !t.IsBlocked && t.IsAuthorized).ToList();
+                    break;
+            }
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create(UserCreateViewModel model)
-		{
-			string fileSavePath = Path.Combine("res/Tunes/Upload", model.Tune.File.FileName);
-			string posterSavePath = Path.Combine("res/Tunes/Posters", model.Tune.Poster.FileName);
+            var count = tunes.Count();
+            var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-			using (var fs = new FileStream(Path.Combine(_environment.WebRootPath, fileSavePath), FileMode.Create))
-			{
-				await model.Tune.File.CopyToAsync(fs);
-			}
+            IndexModel index = new IndexModel(user, tunesOnPage, new PageModel(count, pageNumber, pageSize), filter);
+            return View(index);
+        }
 
-			using (var ps = new FileStream(Path.Combine(_environment.WebRootPath, posterSavePath), FileMode.Create))
-			{
-				await model.Tune.Poster.CopyToAsync(ps);
-			}
+        public async Task<IActionResult> Create()
+        {
+            var user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
+            var categories = await _category.GetAllAsync();
 
-			CategoryDTO selectedCategory = await _categoryService.GetAsync(model.Tune.CategoryId);
-			TuneDTO newTune = new TuneDTO
-			{
-				Performer = model.Tune.Performer,
-				Title = model.Tune.Title,
-				FileUrl = "/" + fileSavePath,
-				PosterUrl = "/" + posterSavePath,
-				IsAuthorized = true,
-				IsBlocked = false,
-				Category = new Category
-				{
-					Id = selectedCategory.Id,
-					Genre = selectedCategory.Genre,
-					PosterUrl = selectedCategory.PosterUrl
-				}
-			};
-			await _tuneService.CreateAsync(newTune);
+            CreateModel create = new CreateModel
+            {
+                User = user,
+                Tune = new TuneDTO(),
+                File = null!,
+                Poster = null!,
+                Filter = new FilterModel(categories.ToList(), 0)
+            };
 
-			return RedirectToAction("Index");
-		}
+            return View(create);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(UserCreateViewModel model)
+        //{
+        //	string fileSavePath = Path.Combine("res/Tunes/Upload", model.Tune.File.FileName);
+        //	string posterSavePath = Path.Combine("res/Tunes/Posters", model.Tune.Poster.FileName);
+
+        //	using (var fs = new FileStream(Path.Combine(_environment.WebRootPath, fileSavePath), FileMode.Create))
+        //	{
+        //		await model.Tune.File.CopyToAsync(fs);
+        //	}
+
+        //	using (var ps = new FileStream(Path.Combine(_environment.WebRootPath, posterSavePath), FileMode.Create))
+        //	{
+        //		await model.Tune.Poster.CopyToAsync(ps);
+        //	}
+
+        //	CategoryDTO selectedCategory = await _categoryService.GetAsync(model.Tune.CategoryId);
+        //	TuneDTO newTune = new TuneDTO
+        //	{
+        //		Performer = model.Tune.Performer,
+        //		Title = model.Tune.Title,
+        //		FileUrl = "/" + fileSavePath,
+        //		PosterUrl = "/" + posterSavePath,
+        //		IsAuthorized = true,
+        //		IsBlocked = false,
+        //		Category = new Category
+        //		{
+        //			Id = selectedCategory.Id,
+        //			Genre = selectedCategory.Genre,
+        //			PosterUrl = selectedCategory.PosterUrl
+        //		}
+        //	};
+        //	await _tuneService.CreateAsync(newTune);
+
+        //	return RedirectToAction("Index");
+        //}
 
 
 
-		public ActionResult Login() => RedirectToAction("Login", "Account");
+        public ActionResult Login() => RedirectToAction("Login", "Account");
 		public ActionResult Registration() => RedirectToAction("Registration", "Account");
 		public IActionResult Logout()
 		{

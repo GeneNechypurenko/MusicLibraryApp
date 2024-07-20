@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
-using MusicLibraryApp.DAL.Models;
-using MusicLibraryApp.Models.AdminPage;
-using MusicLibraryApp.Models.Base;
-using MusicLibraryApp.Models.UserPage;
 
 namespace MusicLibraryApp.Controllers
 {
