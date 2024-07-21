@@ -18,13 +18,13 @@ namespace MusicLibraryApp.BLL.Services
 			return new TuneDTO
 			{
 				Id = tune.Id,
-				Artist = tune.Performer,
+				Performer = tune.Performer,
 				Title = tune.Title,
 				FileUrl = tune.FileUrl,
 				PosterUrl = tune.PosterUrl,
 				IsAuthorized = tune.IsAuthorized,
 				IsBlocked = tune.IsBlocked,
-				Category = tune.Category,
+				CategoryId = tune.CategoryId,
 			};
 		}
 
@@ -34,19 +34,19 @@ namespace MusicLibraryApp.BLL.Services
             return new TuneDTO
             {
                 Id = tune.Id,
-                Artist = tune.Performer,
+                Performer = tune.Performer,
                 Title = tune.Title,
                 FileUrl = tune.FileUrl,
                 PosterUrl = tune.PosterUrl,
                 IsAuthorized = tune.IsAuthorized,
                 IsBlocked = tune.IsBlocked,
-                Category = tune.Category,
+                CategoryId = tune.CategoryId,
             };
         }
 
         public async Task<IEnumerable<TuneDTO>> GetAllAsync()
 			=> new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Tune, TuneDTO>()
-			.ForMember("Category", o => o.MapFrom(c => c.Category))))
+			.ForMember("CategoryId", o => o.MapFrom(c => c.CategoryId))))
 			.Map<IEnumerable<Tune>, IEnumerable<TuneDTO>>(await UnitOfWork.Tunes.GetAllAsync());
 
 		public async Task CreateAsync(TuneDTO modelDTO)
@@ -54,13 +54,13 @@ namespace MusicLibraryApp.BLL.Services
 			var tune = new Tune
 			{
 				Id = modelDTO.Id,
-				Performer = modelDTO.Artist,
+				Performer = modelDTO.Performer,
 				Title = modelDTO.Title,
 				FileUrl = modelDTO.FileUrl,
 				PosterUrl = modelDTO.PosterUrl,
 				IsAuthorized = modelDTO.IsAuthorized,
 				IsBlocked = modelDTO.IsBlocked,
-				Category = modelDTO.Category,
+				CategoryId = modelDTO.CategoryId,
 			};
 			await UnitOfWork.Tunes.CreateAsync(tune);
 			await UnitOfWork.SaveAsync();
@@ -71,13 +71,13 @@ namespace MusicLibraryApp.BLL.Services
 			var tune = new Tune
 			{
 				Id = modelDTO.Id,
-				Performer = modelDTO.Artist,
+				Performer = modelDTO.Performer,
 				Title = modelDTO.Title,
 				FileUrl = modelDTO.FileUrl,
 				PosterUrl = modelDTO.PosterUrl,
 				IsAuthorized = modelDTO.IsAuthorized,
 				IsBlocked = modelDTO.IsBlocked,
-				Category = modelDTO.Category,
+				CategoryId = modelDTO.CategoryId,
 			};
 			UnitOfWork.Tunes.Update(tune);
 			await UnitOfWork.SaveAsync();

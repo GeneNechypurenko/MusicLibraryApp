@@ -1,57 +1,61 @@
-﻿@model MusicLibraryApp.Models.Home.CreateModel
+﻿@model MusicLibraryApp.Models.Home.CreateTuneModel
+
+@{
+	ViewData["Title"] = "Create Tune";
+}
 
 @section HeaderText {
-    <h2>ADD YOUR FAVOURITE MUSIC</h2>
+	<h2>ADD YOUR FAVOURITE MUSIC</h2>
 }
 
 @section HeaderContent {
-    <p class="display_username">hello, @Model.User.Username</p>
-    <a class="link_type_c" asp-action="Index">Back</a>
+	<p class="display_username">hello, @Model.Username</p>
+	<a class="link_type_c" asp-action="Index">Back</a>
 }
 
 <div class="user-create-data-container">
-    <form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
-        <div class="user-create-group-section">
-            <div class="user-create-input-group">
-                <input placeholder="Artist" asp-for="Tune.Artist" />
-                <span asp-validation-for="Tune.Artist" class="validation-message"></span>
-                <hr />
-                <input placeholder="Title" asp-for="Tune.Title" />
-                <span asp-validation-for="Tune.Title" class="validation-message"></span>
-                <hr />
-                <select asp-for="Tune.Category.Id" asp-items="Model.Filter.Category"></select>
-                <span asp-validation-for="Tune.Category.Id" class="validation-message"></span>
-            </div>
-            <div class="user-create-input-group">
-                <p>Upload your music file here</p>
-                <input type="file" asp-for="File" />
-                <span asp-validation-for="File" class="validation-message"></span>
-                <hr />
-                <p>Upload music poster here</p>
-                <input type="file" asp-for="Poster" />
-                <span asp-validation-for="Poster" class="validation-message"></span>
-            </div>
-            @if(Model.User.IsAdmin)
-            {
-                <div class="user-create-input-group">
-                    <p>Upload your music file here</p>
-                    <input type="file" asp-for="File" />
-                    <span asp-validation-for="File" class="validation-message"></span>
-                    <hr />
-                    <p>Upload music poster here</p>
-                    <input type="file" asp-for="Poster" />
-                    <span asp-validation-for="Poster" class="validation-message"></span>
-                </div>
-            }
-        </div>
-        <div class="user-create-button-section">
-            <button class="confirm-button" type="submit">Confirm</button>
-        </div>
-    </form>
+	<form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
+		<div class="user-create-group-section">
+			@if (Model.IsAdmin)
+			{
+				<div class="user-create-input-group">
+					<p>Upload your audio file here</p>
+					<input type="file" asp-for="File" />
+					<span asp-validation-for="File" class="validation-message"></span>
+					<hr />
+					<p>Upload poster here</p>
+					<input type="file" asp-for="Poster" />
+					<span asp-validation-for="Poster" class="validation-message"></span>
+				</div>
+			}
+			<div class="user-create-input-group">
+				<input placeholder="Artist" asp-for="Performer" />
+				<span asp-validation-for="Performer" class="validation-message"></span>
+				<hr />
+				<input placeholder="Title" asp-for="Title" />
+				<span asp-validation-for="Title" class="validation-message"></span>
+				<hr />
+				<select asp-for="CategoryId" class="form-control" asp-items="Model.Categories"></select>
+				<span></span>
+			</div>
+			<div class="user-create-input-group">
+				<p>Upload your audio file here</p>
+				<input type="file" asp-for="File" />
+				<span asp-validation-for="File" class="validation-message"></span>
+				<hr />
+				<p>Upload poster here</p>
+				<input type="file" asp-for="Poster" />
+				<span asp-validation-for="Poster" class="validation-message"></span>
+			</div>
+		</div>
+		<div class="user-create-button-section">
+			<button class="confirm-button" type="submit">Confirm</button>
+		</div>
+	</form>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

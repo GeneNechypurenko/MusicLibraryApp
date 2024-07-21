@@ -11,7 +11,7 @@ namespace MusicLibraryApp.DAL.Models
 		public string? PosterUrl { get; set; }
 		public bool IsAuthorized { get; set; }
 		public bool IsBlocked { get; set; }
-		public int? CategoryId { get; set; }
-		public Category? Category { get; set; }
+		public int CategoryId { get; set; }
+		public Category Category { get; set; }
 	}
 }

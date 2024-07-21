@@ -6,16 +6,12 @@ namespace MusicLibraryApp.BLL.ModelsDTO
 	public class TuneDTO
 	{
 		public int Id { get; set; }
-
-        [Required(ErrorMessage = "Artist is required")]
-        public string? Artist { get; set; }
-
-        [Required(ErrorMessage = "Title is required")]
+        public string? Performer { get; set; }
         public string? Title { get; set; }
-		public string? FileUrl { get; set; }
-		public string? PosterUrl { get; set; }
+        public string? FileUrl { get; set; }
+        public string? PosterUrl { get; set; }
 		public bool IsAuthorized { get; set; }
 		public bool IsBlocked { get; set; }
-		public Category? Category { get; set; }
+		public int CategoryId { get; set; }
 	}
 }

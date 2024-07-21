@@ -1,5 +1,9 @@
 ﻿@model MusicLibraryApp.Models.Home.IndexModel
 
+@{
+    ViewData["Title"] = "Index";
+}
+
 @if (Model.User != null && Model.User.IsAdmin)
 {
     @section HeaderNavigation {
@@ -59,7 +63,7 @@
                     </div>
                     <div class="tune-box-content">
                         <div class="tune-item-description">
-                            <p>@tune.Artist - @tune.Title</p>
+                            <p>@tune.Performer - @tune.Title</p>
                         </div>
                         <div class="tune-item-audio">
                             <audio controls>
