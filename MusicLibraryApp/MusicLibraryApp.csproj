@@ -14,6 +14,9 @@
     <Content Update="wwwroot\res\Tunes\Posters\default_poster.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\res\Tunes\Upload\default_tune.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

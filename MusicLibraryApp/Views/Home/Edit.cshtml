@@ -15,18 +15,17 @@
 
 <div class="user-create-data-container">
 	<form class="user-create-form" asp-action="Edit" method="post" enctype="multipart/form-data">
+		@Html.AntiForgeryToken()
 		<div class="user-create-group-section">
 			<div class="user-create-input-group">
-
 				<input type="hidden" asp-for="TuneId" />
-
 				<select asp-for="IsAuthorize" class="form-control" asp-items="Model.Authorization"></select>
-				<span>Unathorized TUNES will be moved to "New" list</span>
+				<span>Unathorized TUNES will be moved to "New"</span>
 				<hr />
 				<select asp-for="IsBlocked" class="form-control" asp-items="Model.Blocking"></select>
-				<span>Blocked TUNES will be be moved to "Blocked"</span>
+				<span>Blocked TUNES will be moved to "Blocked"</span>
 				<hr />
-				<a class="delete-link" asp-action="Delete" asp-route-id="@Model.TuneId">DELETE TUNE</a>
+				<a class="delete-link" href="#" data-id="@Model.TuneId">DELETE TUNE</a>
 				<span></span>
 			</div>
 			<div class="user-create-input-group">
@@ -55,8 +54,40 @@
 	</form>
 </div>
 
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteConfirmModalLabel">DELETE CONFIRMATION</h5>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to delete this Tune?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+				<button type="button" class="btn btn-danger" id="confirmDelete">CONFIRM</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="deleteSuccessModal" tabindex="-1" role="dialog" aria-labelledby="deleteSuccessModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteSuccessModalLabel">Success!</h5>
+			</div>
+			<div class="modal-body">
+				Tune successfully removed.
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+	@Html.Partial("_ValidationScriptsPartial")
+	<script src="~/js/site.js"></script>
 }

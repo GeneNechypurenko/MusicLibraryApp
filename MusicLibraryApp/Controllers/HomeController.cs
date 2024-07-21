@@ -93,7 +93,7 @@ namespace MusicLibraryApp.Controllers
 				FileUrl = tuneFilePath,
 				PosterUrl = posterFilePath,
 				CategoryId = model.CategoryId,
-				IsAuthorized = true,
+				IsAuthorized = true,            // <-- change to false when on production stage!!!
 				IsBlocked = false
 			};
 
@@ -161,11 +161,13 @@ namespace MusicLibraryApp.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
+		[HttpDelete]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Delete(int id)
 		{
-
+			await _tune.DeleteAsync(id);
+			return Ok();
 		}
-
 
 		public ActionResult Login() => RedirectToAction("Login", "Account");
 		public ActionResult Registration() => RedirectToAction("Registration", "Account");
