@@ -7,7 +7,6 @@ namespace MusicLibraryApp.Models.Home
 	public class CreateTuneModel
 	{
 		public string Username { get; set; }
-		public bool IsAdmin { get; set; }
 
 		[Required(ErrorMessage = "Performer is required")]
 		public string Performer { get; set; }

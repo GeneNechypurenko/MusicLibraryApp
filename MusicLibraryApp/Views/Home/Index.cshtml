@@ -65,7 +65,7 @@
 						<div class="tune-item-description">
 							@if (Model.User != null && Model.User.IsAdmin)
 							{
-								<a asp-action="Edit">Click to Edit: @tune.Performer - @tune.Title</a>
+								<a asp-action="Edit" asp-route-id="@tune.Id">Click to Edit: @tune.Performer - @tune.Title</a>
 							}
 							else
 							{

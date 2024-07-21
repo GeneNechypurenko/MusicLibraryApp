@@ -584,7 +584,7 @@ input[type=file]::file-selector-button {
             text-align: center;
         }
 
-/* ----- User - Create region ----- */
+/* ----- User - Create, Edit region ----- */
 
 .user-create-data-container {
     display: flex;
@@ -633,28 +633,28 @@ input[type=file]::file-selector-button {
         width: 40%;
     }
 
-    .user-create-input-group {
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        gap: 10px;
-        height: 100%;
-        width: 30%;
-    }
+.user-create-input-group {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+    width: 30%;
+}
 
-        .user-create-input-group input,
-        .user-create-input-group select {
-            width: 100%;
-            border-radius: 10px;
-            background: #fff;
-            outline-style: none;
-            padding: 6px;
-            font-weight: bold;
-            text-align: center;
-            outline: none;
-            position: relative;
-        }
+    .user-create-input-group input,
+    .user-create-input-group select {
+        width: 100%;
+        border-radius: 10px;
+        background: #fff;
+        outline-style: none;
+        padding: 6px;
+        font-weight: bold;
+        text-align: center;
+        outline: none;
+        position: relative;
+    }
 
         .user-create-input-group input::placeholder {
             color: #777;
@@ -672,16 +672,39 @@ input[type=file]::file-selector-button {
         text-align: center;
     }
 
-        .user-create-input-group p {
-            width: 100%;
-            height: 34px;
-            color: black;
-            font-weight: bold;
-            text-align: center;
-            background: #fff;
-            padding: 4px;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            margin: 0;
-        }
+    .user-create-input-group p {
+        width: 100%;
+        height: 34px;
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        background: #fff;
+        padding: 4px;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        margin: 0;
+    }
 
+    .user-create-input-group .delete-link {
+        width: 100%;
+        height: 36px;
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        background: red;
+        border-radius: 10px;
+        margin: 0;
+        text-decoration: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        transition: 0.2s ease-in-out;
+    }
+
+    .user-create-input-group .delete-link:hover {
+        background: black;
+        color: red;
+        outline: 2px solid red;
+    }

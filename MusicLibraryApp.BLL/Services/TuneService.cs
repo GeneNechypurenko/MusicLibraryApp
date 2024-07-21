@@ -68,19 +68,20 @@ namespace MusicLibraryApp.BLL.Services
 
 		public async Task UpdateAsync(TuneDTO modelDTO)
 		{
-			var tune = new Tune
+			var tune = await UnitOfWork.Tunes.GetAsync(modelDTO.Id);
+			if (tune != null)
 			{
-				Id = modelDTO.Id,
-				Performer = modelDTO.Performer,
-				Title = modelDTO.Title,
-				FileUrl = modelDTO.FileUrl,
-				PosterUrl = modelDTO.PosterUrl,
-				IsAuthorized = modelDTO.IsAuthorized,
-				IsBlocked = modelDTO.IsBlocked,
-				CategoryId = modelDTO.CategoryId,
-			};
-			UnitOfWork.Tunes.Update(tune);
-			await UnitOfWork.SaveAsync();
+				tune.Performer = modelDTO.Performer;
+				tune.Title = modelDTO.Title;
+				tune.FileUrl = modelDTO.FileUrl;
+				tune.PosterUrl = modelDTO.PosterUrl;
+				tune.IsAuthorized = modelDTO.IsAuthorized;
+				tune.IsBlocked = modelDTO.IsBlocked;
+				tune.CategoryId = modelDTO.CategoryId;
+
+				UnitOfWork.Tunes.Update(tune);
+				await UnitOfWork.SaveAsync();
+			}
 		}
 
 		public async Task DeleteAsync(int id)

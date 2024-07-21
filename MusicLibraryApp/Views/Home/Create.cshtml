@@ -16,18 +16,6 @@
 <div class="user-create-data-container">
 	<form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
 		<div class="user-create-group-section">
-			@if (Model.IsAdmin)
-			{
-				<div class="user-create-input-group">
-					<p>Upload your audio file here</p>
-					<input type="file" asp-for="File" />
-					<span asp-validation-for="File" class="validation-message"></span>
-					<hr />
-					<p>Upload poster here</p>
-					<input type="file" asp-for="Poster" />
-					<span asp-validation-for="Poster" class="validation-message"></span>
-				</div>
-			}
 			<div class="user-create-input-group">
 				<input placeholder="Artist" asp-for="Performer" />
 				<span asp-validation-for="Performer" class="validation-message"></span>

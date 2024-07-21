@@ -78,7 +78,6 @@ namespace MusicLibraryApp.Controllers
 			var model = new CreateTuneModel
 			{
 				Username = user.Username!,
-				IsAdmin = user.IsAdmin,
 				Categories = categories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Genre }).ToList()
 			};
 			return View(model);
@@ -102,6 +101,66 @@ namespace MusicLibraryApp.Controllers
 			};
 
 			await _tune.CreateAsync(tune);
+			return RedirectToAction(nameof(Index));
+		}
+
+		public async Task<IActionResult> Edit(int id)
+		{
+			var user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
+			var tune = await _tune.GetAsync(id);
+			var categories = await _category.GetAllAsync();
+
+			Dictionary<int, string> authorization = new Dictionary<int, string> { { 0, "Authorized" }, { 1, "Unauthorized" } };
+			Dictionary<int, string> blocking = new Dictionary<int, string> { { 0, "Blocked" }, { 1, "Unblocked" } };
+
+			var model = new EditTuneModel
+			{
+				TuneId = tune.Id,
+				Username = user.Username!,
+				Performer = tune.Performer,
+				Title = tune.Title,
+				CategoryId = tune.CategoryId,
+				IsAuthorize = tune.IsAuthorized ? 0 : 1, 
+				IsBlocked = tune.IsBlocked ? 0 : 1, 
+				Categories = categories.Select(c => new SelectListItem
+				{
+					Value = c.Id.ToString(),
+					Text = c.Genre,
+					Selected = c.Id == tune.CategoryId 
+				}).ToList(),
+				Authorization = authorization.Select(a => new SelectListItem
+				{
+					Value = a.Key.ToString(),
+					Text = a.Value,
+					Selected = a.Key == (tune.IsAuthorized ? 0 : 1) 
+				}).ToList(),
+				Blocking = blocking.Select(b => new SelectListItem
+				{
+					Value = b.Key.ToString(),
+					Text = b.Value,
+					Selected = b.Key == (tune.IsBlocked ? 0 : 1)
+				}).ToList()
+			};
+
+			return View(model);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(EditTuneModel model)
+		{
+			TuneDTO tune = await _tune.GetAsync(model.TuneId);
+			string tuneFilePath = await FileUpload(model.File, "res/Tunes/Upload");
+			string posterFilePath = await FileUpload(model.Poster, "res/Tunes/Posters");
+
+			tune.Performer = model.Performer;
+			tune.Title = model.Title;
+			tune.FileUrl = tuneFilePath;
+			tune.PosterUrl = posterFilePath;
+			tune.CategoryId = model.CategoryId;
+			tune.IsAuthorized = model.IsAuthorize == 0;
+			tune.IsBlocked = model.IsBlocked == 0;
+
+			await _tune.UpdateAsync(tune);
 			return RedirectToAction(nameof(Index));
 		}
 

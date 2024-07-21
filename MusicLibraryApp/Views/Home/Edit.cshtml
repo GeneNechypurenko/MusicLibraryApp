@@ -1,0 +1,62 @@
+﻿@model MusicLibraryApp.Models.Home.EditTuneModel
+
+@{
+	ViewData["Title"] = "Edit Tune";
+}
+
+@section HeaderText {
+	<h2>TUNE EDITOR</h2>
+}
+
+@section HeaderContent {
+	<p class="display_username">hello, @Model.Username</p>
+	<a class="link_type_c" asp-action="Index">Back</a>
+}
+
+<div class="user-create-data-container">
+	<form class="user-create-form" asp-action="Edit" method="post" enctype="multipart/form-data">
+		<div class="user-create-group-section">
+			<div class="user-create-input-group">
+
+				<input type="hidden" asp-for="TuneId" />
+
+				<select asp-for="IsAuthorize" class="form-control" asp-items="Model.Authorization"></select>
+				<span>Unathorized TUNES will be moved to "New" list</span>
+				<hr />
+				<select asp-for="IsBlocked" class="form-control" asp-items="Model.Blocking"></select>
+				<span>Blocked TUNES will be be moved to "Blocked"</span>
+				<hr />
+				<a class="delete-link" asp-action="Delete" asp-route-id="@Model.TuneId">DELETE TUNE</a>
+				<span></span>
+			</div>
+			<div class="user-create-input-group">
+				<input placeholder="Artist" asp-for="Performer" />
+				<span asp-validation-for="Performer" class="validation-message"></span>
+				<hr />
+				<input placeholder="Title" asp-for="Title" />
+				<span asp-validation-for="Title" class="validation-message"></span>
+				<hr />
+				<select asp-for="CategoryId" class="form-control" asp-items="Model.Categories"></select>
+				<span></span>
+			</div>
+			<div class="user-create-input-group">
+				<p>Upload your audio file here</p>
+				<input type="file" asp-for="File" />
+				<span asp-validation-for="File" class="validation-message"></span>
+				<hr />
+				<p>Upload poster here</p>
+				<input type="file" asp-for="Poster" />
+				<span asp-validation-for="Poster" class="validation-message"></span>
+			</div>
+		</div>
+		<div class="user-create-button-section">
+			<button class="confirm-button" type="submit">Confirm</button>
+		</div>
+	</form>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
