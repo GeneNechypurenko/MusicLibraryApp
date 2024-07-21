@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
-using MusicLibraryApp.BLL.Services;
 using MusicLibraryApp.BLL.Services.Interfaces;
-using MusicLibraryApp.DAL.Models;
 using MusicLibraryApp.Models.Home;
 
 namespace MusicLibraryApp.Controllers
@@ -117,22 +114,22 @@ namespace MusicLibraryApp.Controllers
 			{
 				TuneId = tune.Id,
 				Username = user.Username!,
-				Performer = tune.Performer,
-				Title = tune.Title,
+				Performer = tune.Performer!,
+				Title = tune.Title!,
 				CategoryId = tune.CategoryId,
-				IsAuthorize = tune.IsAuthorized ? 0 : 1, 
-				IsBlocked = tune.IsBlocked ? 0 : 1, 
+				IsAuthorize = tune.IsAuthorized ? 0 : 1,
+				IsBlocked = tune.IsBlocked ? 0 : 1,
 				Categories = categories.Select(c => new SelectListItem
 				{
 					Value = c.Id.ToString(),
 					Text = c.Genre,
-					Selected = c.Id == tune.CategoryId 
+					Selected = c.Id == tune.CategoryId
 				}).ToList(),
 				Authorization = authorization.Select(a => new SelectListItem
 				{
 					Value = a.Key.ToString(),
 					Text = a.Value,
-					Selected = a.Key == (tune.IsAuthorized ? 0 : 1) 
+					Selected = a.Key == (tune.IsAuthorized ? 0 : 1)
 				}).ToList(),
 				Blocking = blocking.Select(b => new SelectListItem
 				{
@@ -163,6 +160,12 @@ namespace MusicLibraryApp.Controllers
 			await _tune.UpdateAsync(tune);
 			return RedirectToAction(nameof(Index));
 		}
+
+		public async Task<IActionResult> Delete(int id)
+		{
+
+		}
+
 
 		public ActionResult Login() => RedirectToAction("Login", "Account");
 		public ActionResult Registration() => RedirectToAction("Registration", "Account");

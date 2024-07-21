@@ -15,6 +15,7 @@ namespace MusicLibraryApp.Controllers
 		}
 		public IActionResult Login() => View();
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginModel login)
 		{
 			if (ModelState.IsValid)
@@ -36,6 +37,7 @@ namespace MusicLibraryApp.Controllers
 
 		public IActionResult Registration() => View();
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Registration(RegistrationModel registration)
 		{
 			if (ModelState.IsValid)
