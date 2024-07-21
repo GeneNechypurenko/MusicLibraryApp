@@ -105,43 +105,6 @@ namespace MusicLibraryApp.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-
-		//public async Task<IActionResult> Create()
-		//{
-		//	var user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
-		//	var categories = await _category.GetAllAsync();
-		//	var filter = new FilterModel(categories.ToList(), 0);
-
-		//	CreateModel create = new CreateModel() { Filter = filter };
-		//	return View(create);
-		//}
-
-
-		//[HttpPost]
-		//[ValidateAntiForgeryToken]
-		//public async Task<IActionResult> Create(CreateModel model)
-		//{
-		//	model.User = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
-		//	var selectedCategory = await _category.GetAsync(model.Filter.Selected);
-
-		//	string filePath = await FileUpload(model.File, "res/Tunes/Upload");
-		//	string posterPath = await FileUpload(model.Poster, "res/Tunes/Posters");
-
-		//	var tune = new TuneDTO
-		//	{
-		//		Performer = model.Tune.Performer,
-		//		Title = model.Tune.Title,
-		//		FileUrl = filePath,
-		//		PosterUrl = posterPath,
-		//		IsAuthorized = true,
-		//		IsBlocked = false,
-		//		CategoryId = selectedCategory.Id,
-		//	};
-
-		//	await _tune.CreateAsync(tune);
-		//	return RedirectToAction("Index");
-		//}
-
 		public ActionResult Login() => RedirectToAction("Login", "Account");
 		public ActionResult Registration() => RedirectToAction("Registration", "Account");
 		public IActionResult Logout()
