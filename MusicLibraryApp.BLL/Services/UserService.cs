@@ -48,33 +48,34 @@ namespace MusicLibraryApp.BLL.Services
 			};
 		}
 
-        public async Task<UserDTO> GetAsync(string name)
-        {
-            var user = await UnitOfWork.Users.GetAsync(name);
-            return new UserDTO
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Password = user.Password,
-                IsAdmin = user.IsAdmin,
-                IsAuthorized = user.IsAuthorized,
-                IsBlocked = user.IsBlocked,
-            };
-        }
-
-        public async Task UpdateAsync(UserDTO modelDTO)
+		public async Task<UserDTO> GetAsync(string name)
 		{
-			var user = new User
+			var user = await UnitOfWork.Users.GetAsync(name);
+			return new UserDTO
 			{
-				Id = modelDTO.Id,
-				Username = modelDTO.Username,
-				Password = modelDTO.Password,
-				IsAdmin = modelDTO.IsAdmin,
-				IsAuthorized = modelDTO.IsAuthorized,
-				IsBlocked = modelDTO.IsBlocked,
+				Id = user.Id,
+				Username = user.Username,
+				Password = user.Password,
+				IsAdmin = user.IsAdmin,
+				IsAuthorized = user.IsAuthorized,
+				IsBlocked = user.IsBlocked,
 			};
-			UnitOfWork.Users.Update(user);
-			await UnitOfWork.SaveAsync();
+		}
+
+		public async Task UpdateAsync(UserDTO modelDTO)
+		{
+			var user = await UnitOfWork.Users.GetAsync(modelDTO.Id);
+			if (user != null)
+			{
+				user.Username = modelDTO.Username;
+				user.Password = modelDTO.Password;
+				user.IsAdmin = modelDTO.IsAdmin;
+				user.IsAuthorized = modelDTO.IsAuthorized;
+				user.IsBlocked = modelDTO.IsBlocked;
+
+				UnitOfWork.Users.Update(user);
+				await UnitOfWork.SaveAsync();
+			};
 		}
 	}
 }

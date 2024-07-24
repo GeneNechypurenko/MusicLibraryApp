@@ -793,3 +793,45 @@ input[type=file]::file-selector-button {
             background-color: #0056b3;
             border-color: #004085;
         }
+
+
+
+/* ----- mangement region ----- */
+
+
+.content-box {
+        background: #000000cc;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    gap: 10px;
+}
+
+.item {
+    height: 5%;
+    width: 60%;
+    color: black;
+    font-weight: bold;
+    border: 2px solid #ffffff20;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    margin: 0;
+    transition: 0.2s ease-in-out;
+    background: #ffffffaa;
+}
+
+    .item:hover {
+        color: #fff;
+        background: black;
+        text-decoration: underline;
+    }

@@ -1,22 +1,67 @@
-﻿@{
+﻿@model MusicLibraryApp.Models.UserManagement.IndexUserModel
+
+@{
 	ViewData["Title"] = "User Management";
 }
 
-@section HeaderContent {
-	<a asp-controller="Home" class="link_type_c">Home</a>
+@section HeaderNavigation {
+	<a class="link_type_a" asp-controller="Home">HOME</a>
+	<a class="link_type_a" asp-controller="CategoryManagement">GENRES</a>
 }
 
-<h1 style="color: #fff;
-font-weight: bold;
-background: #000000cc;
-height: 40vh;
-width: 100vh;
-border-radius: 1rem;
-display: flex;
-flex-direction: column;
-align-content: center;
-justify-content: center;
-flex-wrap: wrap;
-margin: 0;">
-	Work in progress!
-</h1>
+@section HeaderSearch {
+	<div>test</div>
+}
+
+@section HeaderContent {
+	<p class="display_username">hello, @Model.Username</p>
+	<a class="link_type_c" asp-action="Logout/Home">LogOut</a>
+}
+
+<div class="filter">
+	<h2>USER MANAGEMENT</h2>
+	<form method="get" asp-action="Index">
+		<select asp-for="SelectedItem" asp-items="Model.Filter" onchange="this.form.submit()"></select>
+	</form>
+</div>
+
+<section>
+	<div class="pagination">
+		@if (Model.Page.HasPreviousPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
+			   asp-route-selected="@(Model.Filter)"
+			   class="page-back">
+			</a>
+		}
+	</div>
+
+	<div class="tune-container">
+		@if (Model.Users.Count() != 0)
+		{
+			<div class="content-box">
+				@foreach (var user in Model.Users)
+				{
+					<a class="item" asp-action="Edit" asp-route-id="@user.Id">@user.Username</a>
+				}
+			</div>
+		}
+		else
+		{
+			<h2 class="not_found">Nothing here...</h2>
+		}
+	</div>
+
+
+	<div class="pagination">
+		@if (Model.Page.HasNextPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
+			   asp-route-selected="@(Model.Filter)"
+			   class="page-forward">
+			</a>
+		}
+	</div>
+</section>
