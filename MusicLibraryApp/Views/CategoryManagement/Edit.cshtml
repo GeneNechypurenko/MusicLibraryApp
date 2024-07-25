@@ -1,70 +1,38 @@
 ﻿@model MusicLibraryApp.Models.CategoryManagement.EditCategoryModel
 
 @{
-	ViewData["Title"] = "Edit Category";
+    ViewData["Title"] = "Edit Category";
 }
 
 @section HeaderText {
-	<h2>GENRE EDITOR</h2>
+    <h2>GENRE EDITOR</h2>
 }
 
 @section HeaderContent {
-	<p class="display_username">hello, @Model.Username</p>
-	<a class="link_type_c" asp-action="Index">Back</a>
+    <p class="display_username">hello, @Model.Username</p>
+    <a class="link_type_c" asp-action="Index">Back</a>
 }
 
 <div class="user-create-data-container">
-	<form class="user-create-form" asp-action="Edit" method="post" enctype="multipart/form-data">
-		@Html.AntiForgeryToken()
-		<div class="user-create-group-section">
-			<div class="user-create-input-group">
-				<input type="hidden" asp-for="CategoryId" />
-				<input placeholder="Genre" asp-for="Genre" />
-				<span asp-validation-for="Genre" class="validation-message"></span>
-				<a class="delete-link" href="#" data-id="@Model.CategoryId">DELETE CATEGORY</a>
-				<span></span>
-			</div>
-		</div>
-		<div class="user-create-button-section">
-			<button class="confirm-button" type="submit">Confirm</button>
-		</div>
-	</form>
-</div>
-
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="deleteConfirmModalLabel">DELETE CONFIRMATION</h5>
-			</div>
-			<div class="modal-body">
-				Are you sure you want to delete this Tune?
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-				<button type="button" class="btn btn-danger" id="confirmDelete">CONFIRM</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="deleteSuccessModal" tabindex="-1" role="dialog" aria-labelledby="deleteSuccessModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="deleteSuccessModalLabel">Success!</h5>
-			</div>
-			<div class="modal-body">
-				Tune successfully removed.
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+    <form class="user-create-form" asp-action="Edit" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div class="user-create-group-section">
+            <div class="user-create-input-group">
+                <input type="hidden" asp-for="CategoryId" />
+                <input placeholder="Genre" asp-for="Genre" />
+                <span asp-validation-for="Genre" class="validation-message"></span>
+                <a class="delete-link" href="#" data-id="@Model.CategoryId" data-controller="CategoryManagement">DELETE CATEGORY</a>
+                <span></span>
+            </div>
+        </div>
+        <div class="user-create-button-section">
+            <button class="confirm-button" type="submit">Confirm</button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-	@Html.Partial("_ValidationScriptsPartial")
-	<script src="~/js/site.js"></script>
+    @Html.Partial("_ValidationScriptsPartial")
+    @Html.Partial("_ModalsDeleteConfirmationPartial")
+    <script src="~/js/site.js"></script>
 }

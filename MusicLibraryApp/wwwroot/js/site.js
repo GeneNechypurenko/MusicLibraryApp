@@ -1,28 +1,32 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    const deleteLinks = document.querySelectorAll('.delete-link');
-    deleteLinks.forEach(link => {
+    document.querySelectorAll('.delete-link').forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();
-            const tuneId = this.getAttribute('data-id');
-            $('#deleteConfirmModal').modal('show');
+            var itemId = this.getAttribute('data-id');
+            var controller = this.getAttribute('data-controller');
+            $('#deleteConfirmModal').data('itemId', itemId).data('controller', controller).modal('show');
+        });
+    });
 
-            document.getElementById('confirmDelete').onclick = async function () {
-                $('#deleteConfirmModal').modal('hide');
+    document.getElementById('confirmDelete').addEventListener('click', function () {
+        var itemId = $('#deleteConfirmModal').data('itemId');
+        var controller = $('#deleteConfirmModal').data('controller');
 
-                const response = await fetch(`/Home/Delete/${tuneId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                    }
-                });
+        $('#deleteConfirmModal').modal('hide');
 
-                if (response.ok) {
-                    $('#deleteSuccessModal').modal('show');
-                } else {
-                    alert('Something went wrong!');
-                }
-            };
+        $.ajax({
+            url: '/' + controller + '/Delete/' + itemId,
+            type: 'DELETE',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function (result) {
+                $('#deleteSuccessModal').modal('show');
+                $('#item-' + itemId).remove();
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
         });
     });
 });

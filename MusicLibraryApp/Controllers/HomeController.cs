@@ -163,7 +163,6 @@ namespace MusicLibraryApp.Controllers
 		}
 
 		[HttpDelete]
-		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Delete(int id)
 		{
 			await _tune.DeleteAsync(id);
