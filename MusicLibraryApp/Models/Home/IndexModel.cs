@@ -1,15 +1,16 @@
 ﻿using MusicLibraryApp.BLL.ModelsDTO;
+using MusicLibraryApp.Models.CommonModels;
 
 namespace MusicLibraryApp.Models.Home
 {
-	public class IndexModel
+    public class IndexModel
 	{
 		public UserDTO? User { get; }
 		public IEnumerable<TuneDTO> Tunes { get; set; }
-		public PageModel Page { get; }
+		public PaginationModel Page { get; }
 		public FilterModel Filter { get; }
 
-		public IndexModel(UserDTO user, IEnumerable<TuneDTO> tunes, PageModel page, FilterModel filter)
+		public IndexModel(UserDTO user, IEnumerable<TuneDTO> tunes, PaginationModel page, FilterModel filter)
 		{
 			User = user;
 			Tunes = tunes;

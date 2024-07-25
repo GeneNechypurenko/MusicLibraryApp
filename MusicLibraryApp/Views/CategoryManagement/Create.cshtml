@@ -1,0 +1,34 @@
+﻿@model MusicLibraryApp.Models.CategoryManagement.CreateCategoryModel
+
+@{
+	ViewData["Title"] = "Create Category";
+}
+
+@section HeaderText {
+	<h2>ADD YOUR FAVOURITE MUSIC</h2>
+}
+
+@section HeaderContent {
+	<p class="display_username">hello, @Model.Username</p>
+	<a class="link_type_c" asp-action="Index">Back</a>
+}
+
+<div class="user-create-data-container">
+	<form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
+		<div class="user-create-group-section">
+			<div class="user-create-input-group">
+				<input placeholder="Genre" asp-for="Genre" />
+				<span asp-validation-for="Genre" class="validation-message"></span>
+			</div>
+		</div>
+		<div class="user-create-button-section">
+			<button class="confirm-button" type="submit">Confirm</button>
+		</div>
+	</form>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

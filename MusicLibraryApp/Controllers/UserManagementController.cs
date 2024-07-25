@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
-using MusicLibraryApp.DAL.Models;
-using MusicLibraryApp.Models.Home;
+using MusicLibraryApp.Models.CommonModels;
 using MusicLibraryApp.Models.UserManagement;
-using System.Text;
 
 namespace MusicLibraryApp.Controllers
 {
@@ -22,8 +20,8 @@ namespace MusicLibraryApp.Controllers
 			{
 				return RedirectToAction("Login", "Account");
 			}
+			var currentUser = await _user.GetAsync(currentUserId.Value);
 
-			var user = await _user.GetAsync(currentUserId.Value);
 			var users = await _user.GetAllAsync();
 			var userList = users.Where(u => !u.IsAdmin).ToList();
 
@@ -48,9 +46,9 @@ namespace MusicLibraryApp.Controllers
 
 			var model = new IndexUserModel
 			{
-				Username = user.Username!,
+				Username = currentUser.Username!,
 				Users = usersOnPage,
-				Page = new MusicLibraryApp.Models.Home.PageModel(count, pageNumber, pageSize),
+				Page = new PaginationModel(count, pageNumber, pageSize),
 				SelectedItem = selectedItem,
 				Filter = result.Select(r => new SelectListItem
 				{
@@ -98,7 +96,6 @@ namespace MusicLibraryApp.Controllers
 		public async Task<IActionResult> Edit(EditUserModel model)
 		{
 			UserDTO user = await _user.GetAsync(model.UserId);
-
 			user.IsAuthorized = model.IsAuthorized == 0;
 			user.IsBlocked = model.IsBlocked == 0;
 

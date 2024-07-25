@@ -1,22 +1,64 @@
-﻿@{
-	ViewData["Title"] = "Category Management";
+﻿@model MusicLibraryApp.Models.CategoryManagement.IndexCategoryModel
+
+@{
+	ViewData["Title"] = "User Management";
+}
+
+@section HeaderNavigation {
+	<a class="link_type_a" asp-controller="Home">HOME</a>
+	<a class="link_type_a" asp-controller="UserManagement">USERS</a>
+}
+
+@section HeaderSearch {
+	<div>test</div>
 }
 
 @section HeaderContent {
-	<a asp-controller="Home" class="link_type_c">Home</a>
+	<p class="display_username">hello, @Model.Username</p>
+	<a class="link_type_c" asp-action="Logout/Home">LogOut</a>
 }
 
-<h1 style="color: #fff;
-font-weight: bold;
-background: #000000cc;
-height: 40vh;
-width: 100vh;
-border-radius: 1rem;
-display: flex;
-flex-direction: column;
-align-content: center;
-justify-content: center;
-flex-wrap: wrap;
-margin: 0;">
-	Work in progress!
-</h1>
+<div class="filter">
+	<h2>GENRE MANAGEMENT</h2>
+	<form>
+		<a class="link_type_d" asp-action="Create">Click here to create new GENRE</a>
+	</form>
+</div>
+
+<section>
+	<div class="pagination">
+		@if (Model.Page.HasPreviousPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
+			   class="page-back">
+			</a>
+		}
+	</div>
+
+	<div class="tune-container">
+		@if (Model.Categories.Count() != 0)
+		{
+			<div class="content-box">
+				@foreach (var category in Model.Categories)
+				{
+					<a class="item" asp-action="Edit" asp-route-id="@category.Id">@category.Genre</a>
+				}
+			</div>
+		}
+		else
+		{
+			<h2 class="not_found">Nothing here...</h2>
+		}
+	</div>
+
+	<div class="pagination">
+		@if (Model.Page.HasNextPage)
+		{
+			<a asp-action="Index"
+			   asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
+			   class="page-forward">
+			</a>
+		}
+	</div>
+</section>

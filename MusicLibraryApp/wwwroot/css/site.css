@@ -813,12 +813,12 @@ input[type=file]::file-selector-button {
 }
 
 .item {
-    height: 5%;
+    height: 6%;
     width: 60%;
     color: black;
     font-weight: bold;
     border: 2px solid #ffffff20;
-    border-radius: 1rem;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-content: center;

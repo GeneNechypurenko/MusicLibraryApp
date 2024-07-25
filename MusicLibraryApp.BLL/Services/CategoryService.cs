@@ -14,9 +14,8 @@ namespace MusicLibraryApp.BLL.Services
 		{
 			var category = new Category
 			{
-				Id = modelDTO.Id,
 				Genre = modelDTO.Genre,
-				Tunes = modelDTO.Tunes.ToList(),
+				Tunes = new List<Tune>(),
 			};
 			await UnitOfWork.Categories.CreateAsync(category);
 			await UnitOfWork.SaveAsync();
@@ -38,7 +37,7 @@ namespace MusicLibraryApp.BLL.Services
 			{
 				Id = category.Id,
 				Genre = category.Genre,
-				Tunes = category.Tunes.ToList(),
+				Tunes = category.Tunes?.ToList(),
 			};
 		}
 
@@ -49,20 +48,19 @@ namespace MusicLibraryApp.BLL.Services
 			{
 				Id = category.Id,
 				Genre = category.Genre,
-				Tunes = category.Tunes.ToList(),
+				Tunes = category.Tunes?.ToList(),
 			};
 		}
 
 		public async Task UpdateAsync(CategoryDTO modelDTO)
 		{
-			var category = new Category
+			var category = await UnitOfWork.Categories.GetAsync(modelDTO.Id);
+			if (category != null)
 			{
-				Id = modelDTO.Id,
-				Genre = modelDTO.Genre,
-				Tunes = modelDTO.Tunes.ToList(),
-			};
-			UnitOfWork.Categories.Update(category);
-			await UnitOfWork.SaveAsync();
+				category.Genre = modelDTO.Genre;
+				UnitOfWork.Categories.Update(category);
+				await UnitOfWork.SaveAsync();
+			}
 		}
 	}
 }

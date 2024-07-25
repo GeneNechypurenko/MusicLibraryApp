@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Models.CommonModels;
 using MusicLibraryApp.Models.Home;
 
 namespace MusicLibraryApp.Controllers
@@ -64,7 +65,7 @@ namespace MusicLibraryApp.Controllers
 			var count = tunes.Count();
 			var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-			IndexModel index = new IndexModel(user, tunesOnPage, new PageModel(count, pageNumber, pageSize), filter);
+			IndexModel index = new IndexModel(user, tunesOnPage, new PaginationModel(count, pageNumber, pageSize), filter);
 			return View(index);
 		}
 

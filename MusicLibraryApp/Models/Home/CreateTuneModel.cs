@@ -8,7 +8,7 @@ namespace MusicLibraryApp.Models.Home
 	{
 		public string Username { get; set; }
 
-		[Required(ErrorMessage = "Performer is required")]
+		[Required(ErrorMessage = "Artist is required")]
 		public string Performer { get; set; }
 
 		[Required(ErrorMessage = "Title is required")]
