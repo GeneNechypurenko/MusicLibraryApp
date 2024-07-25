@@ -63,15 +63,21 @@ namespace MusicLibraryApp.Controllers
 
 		public async Task<IActionResult> Edit(int id)
 		{
-			var admin = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
-			var user = await _user.GetAsync(id);
+            var currentUserId = HttpContext.Session.GetInt32("UserId");
+            if (currentUserId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var currentUser = await _user.GetAsync(currentUserId.Value);
+
+            var user = await _user.GetAsync(id);
 
 			Dictionary<int, string> authorization = new Dictionary<int, string> { { 0, "Authorized" }, { 1, "Unauthorized" } };
 			Dictionary<int, string> blocking = new Dictionary<int, string> { { 0, "Blocked" }, { 1, "Unblocked" } };
 
 			EditUserModel edit = new EditUserModel
 			{
-				Username = admin.Username!,
+				Username = currentUser.Username!,
 				UserId = user.Id!,
 				IsAuthorized = user.IsAuthorized ? 0 : 1,
 				IsBlocked = user.IsBlocked ? 0 : 1,

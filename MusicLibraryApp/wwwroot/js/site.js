@@ -1,4 +1,5 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.delete-link').forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();

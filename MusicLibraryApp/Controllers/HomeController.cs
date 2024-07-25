@@ -25,17 +25,22 @@ namespace MusicLibraryApp.Controllers
 
 		public async Task<IActionResult> Index(int selected = 0, int pageNumber = 1, int pageSize = 5)
 		{
-			UserDTO user = null!;
+            var currentUserId = HttpContext.Session.GetInt32("UserId");
+            if (currentUserId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var currentUser = await _user.GetAsync(currentUserId.Value);
 
-			var categories = await _category.GetAllAsync();
+            var categories = await _category.GetAllAsync();
 			var categoriesList = categories.ToList();
 			categoriesList.Insert(0, new CategoryDTO { Genre = "All Genres", Id = 0 });
 
 			if (HttpContext.Session.GetInt32("UserId").HasValue)
 			{
-				user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
+                currentUser = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
 
-				if (user.IsAdmin)
+				if (currentUser.IsAdmin)
 				{
 					categoriesList.Insert(1, new CategoryDTO { Genre = "New", Id = -2 });
 					categoriesList.Insert(2, new CategoryDTO { Genre = "Blocked", Id = -1 });
@@ -65,17 +70,23 @@ namespace MusicLibraryApp.Controllers
 			var count = tunes.Count();
 			var tunesOnPage = tunes.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-			IndexModel index = new IndexModel(user, tunesOnPage, new PaginationModel(count, pageNumber, pageSize), filter);
+			IndexModel index = new IndexModel(currentUser, tunesOnPage, new PaginationModel(count, pageNumber, pageSize), filter);
 			return View(index);
 		}
 
 		public async Task<IActionResult> Create()
 		{
-			var user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
-			var categories = await _category.GetAllAsync();
+            var currentUserId = HttpContext.Session.GetInt32("UserId");
+            if (currentUserId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var currentUser = await _user.GetAsync(currentUserId.Value);
+
+            var categories = await _category.GetAllAsync();
 			var model = new CreateTuneModel
 			{
-				Username = user.Username!,
+				Username = currentUser.Username!,
 				Categories = categories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Genre }).ToList()
 			};
 			return View(model);
@@ -104,7 +115,13 @@ namespace MusicLibraryApp.Controllers
 
 		public async Task<IActionResult> Edit(int id)
 		{
-			var user = await _user.GetAsync(HttpContext.Session.GetInt32("UserId")!.Value);
+            var currentUserId = HttpContext.Session.GetInt32("UserId");
+            if (currentUserId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var currentUser = await _user.GetAsync(currentUserId.Value);
+
 			var tune = await _tune.GetAsync(id);
 			var categories = await _category.GetAllAsync();
 
@@ -114,7 +131,7 @@ namespace MusicLibraryApp.Controllers
 			var model = new EditTuneModel
 			{
 				TuneId = tune.Id,
-				Username = user.Username!,
+				Username = currentUser.Username!,
 				Performer = tune.Performer!,
 				Title = tune.Title!,
 				CategoryId = tune.CategoryId,
