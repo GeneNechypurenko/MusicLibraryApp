@@ -2,31 +2,38 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Localization.Filter;
+using MusicLibraryApp.Localization.Services;
 using MusicLibraryApp.Models.CommonModels;
 using MusicLibraryApp.Models.Home;
 
 namespace MusicLibraryApp.Controllers
 {
+	[LocalizationFilter]
 	public class HomeController : Controller
 	{
 		private readonly IService<UserDTO> _user;
 		private readonly IService<CategoryDTO> _category;
 		private readonly IService<TuneDTO> _tune;
 		private readonly IWebHostEnvironment _web;
+		private readonly ILangReader _reader;
 
 		public HomeController(IService<UserDTO> user, IService<CategoryDTO> category, IService<TuneDTO> tune,
-			IWebHostEnvironment web)
+			IWebHostEnvironment web, ILangReader reader)
 		{
 			_user = user;
 			_category = category;
 			_tune = tune;
 			_web = web;
+			_reader = reader;
 		}
 
 		public async Task<IActionResult> Index(int selected = 0, int pageNumber = 1, int pageSize = 5)
 		{
             var currentUserId = HttpContext.Session.GetInt32("UserId");
-            if (currentUserId == null)
+			HttpContext.Session.SetString("path", Request.Path);
+
+			if (currentUserId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -188,11 +195,6 @@ namespace MusicLibraryApp.Controllers
 
 		public ActionResult Login() => RedirectToAction("Login", "Account");
 		public ActionResult Registration() => RedirectToAction("Registration", "Account");
-		public IActionResult Logout()
-		{
-			HttpContext.Session.Clear();
-			return RedirectToAction("Index", "Home");
-		}
 
 		private async Task<string> FileUpload(IFormFile file, string folderPath)
 		{

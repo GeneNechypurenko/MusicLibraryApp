@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Localization.Filter;
 using MusicLibraryApp.Models.CategoryManagement;
 using MusicLibraryApp.Models.CommonModels;
 using MusicLibraryApp.Models.Home;
 
 namespace MusicLibraryApp.Controllers
 {
+	[LocalizationFilter]
 	public class CategoryManagementController : Controller
 	{
 		private readonly IService<UserDTO> _user;

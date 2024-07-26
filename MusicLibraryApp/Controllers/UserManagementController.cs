@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Localization.Filter;
 using MusicLibraryApp.Models.CommonModels;
 using MusicLibraryApp.Models.UserManagement;
 
 namespace MusicLibraryApp.Controllers
 {
+	[LocalizationFilter]
 	public class UserManagementController : Controller
 	{
 		private readonly IService<UserDTO> _user;

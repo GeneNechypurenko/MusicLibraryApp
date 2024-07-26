@@ -3,6 +3,7 @@ using MusicLibraryApp.BLL.Infrastructure;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Localization.Services;
 
 namespace MusicLibraryApp
 {
@@ -19,6 +20,7 @@ namespace MusicLibraryApp
 			builder.Services.AddScoped<IService<UserDTO>, UserService>();
 			builder.Services.AddScoped<IService<CategoryDTO>, CategoryService>();
 			builder.Services.AddScoped<IService<TuneDTO>, TuneService>();
+			builder.Services.AddScoped<ILangReader, LangReaderService>();
 
 			builder.Services.AddControllersWithViews();
 
@@ -33,9 +35,7 @@ namespace MusicLibraryApp
 			var app = builder.Build();
 
 			app.UseStaticFiles();
-
 			app.UseSession();
-
 			app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 			app.Run();
