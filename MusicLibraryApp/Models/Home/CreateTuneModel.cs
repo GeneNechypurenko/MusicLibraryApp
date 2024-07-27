@@ -8,19 +8,24 @@ namespace MusicLibraryApp.Models.Home
 	{
 		public string Username { get; set; }
 
-		[Required(ErrorMessage = "Artist is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "ArtistRequired")]
 		public string Performer { get; set; }
 
-		[Required(ErrorMessage = "Title is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "TitleRequired")]
 		public string Title { get; set; }
 
-		[Required(ErrorMessage = "Category is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "GenreRequired")]
 		public int CategoryId { get; set; }
 
-		[Required(ErrorMessage = "Audio file is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "AudioFileRequired")]
 		public IFormFile File { get; set; }
 
-		[Required(ErrorMessage = "Poster picture is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "PosterRequired")]
 		public IFormFile Poster { get; set; }
 
 		public List<SelectListItem> Categories { get; set; }

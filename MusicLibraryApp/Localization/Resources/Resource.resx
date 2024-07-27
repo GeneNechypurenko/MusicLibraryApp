@@ -120,6 +120,12 @@
   <data name="AccountLoginHeader" xml:space="preserve">
     <value>LOGIN TO YOUR ACCOUNT</value>
   </data>
+  <data name="ArtistRequired" xml:space="preserve">
+    <value>Artist is required</value>
+  </data>
+  <data name="AudioFileRequired" xml:space="preserve">
+    <value>Audio file is required</value>
+  </data>
   <data name="BackLink" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="CategoriesLink" xml:space="preserve">
     <value>GENRES</value>
   </data>
+  <data name="ConfirmationRequired" xml:space="preserve">
+    <value>Confirmation is required</value>
+  </data>
   <data name="CreateGenreLink" xml:space="preserve">
     <value>Click here to create new GENRE</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="FeaturedGenres" xml:space="preserve">
     <value>FEATURED GENRES</value>
+  </data>
+  <data name="GenreRequired" xml:space="preserve">
+    <value>Genre is required</value>
   </data>
   <data name="Greeting" xml:space="preserve">
     <value>hello,</value>
@@ -204,8 +216,14 @@
   <data name="NotSupportAudio" xml:space="preserve">
     <value>Your browser does not support the audio element.</value>
   </data>
+  <data name="PasswordComparison" xml:space="preserve">
+    <value>Passwords do not match!</value>
+  </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>Password is required</value>
+  </data>
+  <data name="PasswordRequirements" xml:space="preserve">
+    <value>Password must be at least 8 characters long and contain both letters and numbers!</value>
   </data>
   <data name="PlaceholderArtist" xml:space="preserve">
     <value>Artist</value>
@@ -225,11 +243,17 @@
   <data name="PlaceholderUsername" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="PosterRequired" xml:space="preserve">
+    <value>Poster picture is required</value>
+  </data>
   <data name="RegistrationLink" xml:space="preserve">
     <value>SignIn</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Title is required</value>
   </data>
   <data name="UploadAudio" xml:space="preserve">
     <value>Upload your audio file here</value>

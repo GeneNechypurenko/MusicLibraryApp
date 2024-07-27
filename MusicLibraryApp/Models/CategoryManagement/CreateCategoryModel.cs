@@ -7,7 +7,8 @@ namespace MusicLibraryApp.Models.CategoryManagement
 	{
 		public string Username { get; set; }
 
-		[Required(ErrorMessage = "Genre is required")]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "GenreRequired")]
 		public string Genre { get; set; }
 	}
 }

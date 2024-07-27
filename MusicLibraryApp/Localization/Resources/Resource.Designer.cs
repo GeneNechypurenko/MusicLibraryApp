@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artist is required.
+        /// </summary>
+        public static string ArtistRequired {
+            get {
+                return ResourceManager.GetString("ArtistRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio file is required.
+        /// </summary>
+        public static string AudioFileRequired {
+            get {
+                return ResourceManager.GetString("AudioFileRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string BackLink {
@@ -133,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation is required.
+        /// </summary>
+        public static string ConfirmationRequired {
+            get {
+                return ResourceManager.GetString("ConfirmationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click here to create new GENRE.
         /// </summary>
         public static string CreateGenreLink {
@@ -165,6 +192,15 @@ namespace Resources {
         public static string FeaturedGenres {
             get {
                 return ResourceManager.GetString("FeaturedGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre is required.
+        /// </summary>
+        public static string GenreRequired {
+            get {
+                return ResourceManager.GetString("GenreRequired", resourceCulture);
             }
         }
         
@@ -322,11 +358,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passwords do not match!.
+        /// </summary>
+        public static string PasswordComparison {
+            get {
+                return ResourceManager.GetString("PasswordComparison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password is required.
         /// </summary>
         public static string PasswordRequired {
             get {
                 return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 8 characters long and contain both letters and numbers!.
+        /// </summary>
+        public static string PasswordRequirements {
+            get {
+                return ResourceManager.GetString("PasswordRequirements", resourceCulture);
             }
         }
         
@@ -385,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Poster picture is required.
+        /// </summary>
+        public static string PosterRequired {
+            get {
+                return ResourceManager.GetString("PosterRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SignIn.
         /// </summary>
         public static string RegistrationLink {
@@ -399,6 +462,15 @@ namespace Resources {
         public static string SelectLanguage {
             get {
                 return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title is required.
+        /// </summary>
+        public static string TitleRequired {
+            get {
+                return ResourceManager.GetString("TitleRequired", resourceCulture);
             }
         }
         

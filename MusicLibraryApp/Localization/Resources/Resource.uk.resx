@@ -120,6 +120,12 @@
   <data name="AccountLoginHeader" xml:space="preserve">
     <value>LOGIN TO YOUR ACCOUNT</value>
   </data>
+  <data name="ArtistRequired" xml:space="preserve">
+    <value>Необхідно заповнити поле артист</value>
+  </data>
+  <data name="AudioFileRequired" xml:space="preserve">
+    <value>Необхідно завантажити аудіофайл</value>
+  </data>
   <data name="BackLink" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="CategoriesLink" xml:space="preserve">
     <value>ЖАНРИ</value>
   </data>
+  <data name="ConfirmationRequired" xml:space="preserve">
+    <value>Потрібне підтвердження пароля</value>
+  </data>
   <data name="CreateGenreLink" xml:space="preserve">
     <value>Натисніть тут, щоб додати новий ЖАНР</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="FeaturedGenres" xml:space="preserve">
     <value>ПОПУЛЯРНІ ЖАНРИ</value>
+  </data>
+  <data name="GenreRequired" xml:space="preserve">
+    <value>Необхідно вказати жанр</value>
   </data>
   <data name="Greeting" xml:space="preserve">
     <value>вітаю, </value>
@@ -204,8 +216,14 @@
   <data name="NotSupportAudio" xml:space="preserve">
     <value>Ваш браузер не підтримує звуковий елемент.</value>
   </data>
+  <data name="PasswordComparison" xml:space="preserve">
+    <value>Паролі не збігаються!</value>
+  </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>Необхідно ввести пароль</value>
+  </data>
+  <data name="PasswordRequirements" xml:space="preserve">
+    <value>Пароль має бути не менше 8 символів і містити як літери, так і цифри!</value>
   </data>
   <data name="PlaceholderArtist" xml:space="preserve">
     <value>Артист</value>
@@ -225,11 +243,17 @@
   <data name="PlaceholderUsername" xml:space="preserve">
     <value>Ім'я користувача</value>
   </data>
+  <data name="PosterRequired" xml:space="preserve">
+    <value>необхідно завантажити зображення постеру</value>
+  </data>
   <data name="RegistrationLink" xml:space="preserve">
     <value>SignIn</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Обрати мову</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Необхідно вказати назву</value>
   </data>
   <data name="UploadAudio" xml:space="preserve">
     <value>Завантажте свій аудіофайл</value>
