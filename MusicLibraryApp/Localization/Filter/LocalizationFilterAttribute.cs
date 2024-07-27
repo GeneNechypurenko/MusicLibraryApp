@@ -10,16 +10,14 @@ namespace MusicLibraryApp.Localization.Filter
 
 		public void OnActionExecuting(ActionExecutingContext context)
 		{
-			string? currentCulture = null;
-			string? getCookie = context.HttpContext.Request.Cookies["Localization"];
-
-			if (currentCulture != null)
+			string? currentCulture = context.HttpContext.Request.Cookies["Localization"];
+			if (string.IsNullOrEmpty(currentCulture))
 			{
-				currentCulture = getCookie;
+				currentCulture = "en";
 			}
 			else
 			{
-				currentCulture = "uk";
+				currentCulture = currentCulture.Replace("Localization:", "");
 			}
 
 			List<string> cultures = context.HttpContext.RequestServices.GetRequiredService<ILangReader>()
@@ -27,7 +25,7 @@ namespace MusicLibraryApp.Localization.Filter
 
 			if (!cultures.Contains(currentCulture))
 			{
-				currentCulture = "uk";
+				currentCulture = "en";
 			}
 
 			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(currentCulture);

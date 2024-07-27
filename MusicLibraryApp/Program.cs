@@ -20,7 +20,6 @@ namespace MusicLibraryApp
 			builder.Services.AddScoped<IService<UserDTO>, UserService>();
 			builder.Services.AddScoped<IService<CategoryDTO>, CategoryService>();
 			builder.Services.AddScoped<IService<TuneDTO>, TuneService>();
-			builder.Services.AddScoped<ILangReader, LangReaderService>();
 
 			builder.Services.AddControllersWithViews();
 
@@ -31,6 +30,8 @@ namespace MusicLibraryApp
 				options.Cookie.HttpOnly = true;
 				options.Cookie.IsEssential = true;
 			});
+
+			builder.Services.AddScoped<ILangReader, LangReaderService>();
 
 			var app = builder.Build();
 

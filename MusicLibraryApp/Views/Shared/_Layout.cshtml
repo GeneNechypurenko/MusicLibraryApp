@@ -38,21 +38,11 @@
 	</main>
 
 	<footer>
-		@* 		<form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account">
-		<p class="layout-footer-text">@Localization.Resources.Resource.SelectLanguage</p>
-		<select class="layout-footer-select" name="language" onchange="this.form.submit()">
-		@foreach (MusicLibraryApp.Localization.Models.LanguageModel lang in LanguageList.LanguageList())
-		{
-		<option value="@lang.Abbreviation">@lang.Language</option>
-		}
-		</select>
-		<div class="layout-footer-space"></div>
-		</form> *@
 
-		<form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account">
+		<form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account" method="post">
 			<p class="layout-footer-text">@Resources.Resource.SelectLanguage</p>
-			<select class="layout-footer-select" name="language" @* onchange="this.form.submit()"*@>
-				@foreach (MusicLibraryApp.Localization.Models.LanguageModel lang in Reader.LanguageList())
+			<select class="layout-footer-select" name="language" onchange="this.form.submit()">
+				@foreach (var lang in Reader.LanguageList())
 				{
 					<option value="@lang.Abbreviation">@lang.Language</option>
 				}
