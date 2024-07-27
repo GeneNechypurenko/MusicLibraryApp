@@ -5,22 +5,21 @@
 }
 
 @section HeaderContent {
-    <a asp-action="Login" class="link_type_b">LogIn</a>
-    <a asp-action="Home" class="link_type_c">Home</a>
+    <a asp-action="Login" class="link_type_c">LogIn</a>
 }
 
 <div class="data-container">
     <form asp-action="Registration" method="post">
-        <input placeholder="Username" asp-for="Username" />
+        <input placeholder="@Resources.Resource.PlaceholderUsername" asp-for="Username" />
         <span asp-validation-for="Username"></span>
         <hr />
-        <input placeholder="Password" asp-for="Password" />
+        <input placeholder="@Resources.Resource.PlaceholderPassword" asp-for="Password" />
         <span asp-validation-for="Password"></span>
         <hr />
-        <input placeholder="Confirm" asp-for="Confirmation" />
+        <input placeholder="@Resources.Resource.PlaceholderConfirmation" asp-for="Confirmation" />
         <span asp-validation-for="Confirmation"></span>
         <hr />
-        <button class="confirm-button" type="submit">Sign Up</button>
+        <button class="confirm-button" type="submit">@Resources.Resource.ButtonSignUp</button>
     </form>
 </div>
 

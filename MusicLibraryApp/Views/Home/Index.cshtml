@@ -1,14 +1,14 @@
 ﻿@model MusicLibraryApp.Models.Home.IndexModel
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Home Index";
 }
 
 @if (Model.User != null && Model.User.IsAdmin)
 {
 	@section HeaderNavigation {
-	<a class="link_type_a" asp-controller="UserManagement">USERS</a>
-	<a class="link_type_a" asp-controller="CategoryManagement">GENRES</a>
+	<a class="link_type_a" asp-controller="UserManagement">@Resources.Resource.UsersLink</a>
+	<a class="link_type_a" asp-controller="CategoryManagement">@Resources.Resource.CategoriesLink</a>
 	}
 }
 
@@ -19,23 +19,23 @@
 @section HeaderContent {
 	@if (Model.User == null)
 	{
-		<a class="link_type_b" asp-action="Login">LogIn</a>
-		<a class="link_type_c" asp-action="Registration">SignUp</a>
+		<a class="link_type_b" asp-action="Login">@Resources.Resource.LoginLink</a>
+		<a class="link_type_c" asp-action="Registration">@Resources.Resource.RegistrationLink</a>
 	}
 	else
 	{
-		<p class="display_username">hello, @Model.User.Username</p>
-		<a class="link_type_c" asp-action="Logout" asp-controller="Account">LogOut</a>
+		<p class="display_username">@Resources.Resource.Greeting @Model.User.Username</p>
+		<a class="link_type_c" asp-action="Logout" asp-controller="Account">@Resources.Resource.LogoutLink</a>
 	}
 }
 
 <div class="filter">
-	<h2>FEATURED GENRES</h2>
+	<h2>@Resources.Resource.FeaturedGenres</h2>
 	<form method="get" asp-action="Index">
 		<select name="selected" asp-for="Filter.Selected" asp-items="Model.Filter.Category" onchange="this.form.submit()"></select>
 		@if (Model.User != null && Model.User.IsAuthorized)
 		{
-			<a class="link_type_d" asp-action="Create">Click here to upload your TUNE</a>
+			<a class="link_type_d" asp-action="Create">@Resources.Resource.CreateTuneLink</a>
 		}
 	</form>
 </div>
@@ -65,7 +65,7 @@
 						<div class="tune-item-description">
 							@if (Model.User != null && Model.User.IsAdmin)
 							{
-								<a asp-action="Edit" asp-route-id="@tune.Id">Click to Edit: @tune.Performer - @tune.Title</a>
+								<a asp-action="Edit" asp-route-id="@tune.Id">@Resources.Resource.EditTuneLink @tune.Performer - @tune.Title</a>
 							}
 							else
 							{
@@ -75,7 +75,7 @@
 						<div class="tune-item-audio">
 							<audio controls>
 								<source src="@tune.FileUrl" type="audio/mpeg">
-								Your browser does not support the audio element.
+								@Resources.Resource.NotSupportAudio
 							</audio>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 		}
 		else
 		{
-			<h2 class="not_found">Nothing here...</h2>
+			<h2 class="not_found">@Resources.Resource.NothingHere</h2>
 		}
 	</div>
 

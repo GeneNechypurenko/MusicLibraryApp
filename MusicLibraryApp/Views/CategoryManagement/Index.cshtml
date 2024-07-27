@@ -5,8 +5,8 @@
 }
 
 @section HeaderNavigation {
-	<a class="link_type_a" asp-controller="Home">HOME</a>
-	<a class="link_type_a" asp-controller="UserManagement">USERS</a>
+	<a class="link_type_a" asp-controller="Home">@Resources.Resource.HomeLink</a>
+	<a class="link_type_a" asp-controller="UserManagement">@Resources.Resource.UsersLink</a>
 }
 
 @section HeaderSearch {
@@ -14,14 +14,14 @@
 }
 
 @section HeaderContent {
-	<p class="display_username">hello, @Model.Username</p>
+	<p class="display_username">@Resources.Resource.Greeting @Model.Username</p>
 	<a class="link_type_c" asp-action="Logout" asp-controller="Account">LogOut</a>
 }
 
 <div class="filter">
 	<h2>GENRE MANAGEMENT</h2>
 	<form>
-		<a class="link_type_d" asp-action="Create">Click here to create new GENRE</a>
+		<a class="link_type_d" asp-action="Create">@Resources.Resource.CreateGenreLink</a>
 	</form>
 </div>
 
@@ -48,7 +48,7 @@
 		}
 		else
 		{
-			<h2 class="not_found">Nothing here...</h2>
+			<h2 class="not_found">@Resources.Resource.NothingHere</h2>
 		}
 	</div>
 

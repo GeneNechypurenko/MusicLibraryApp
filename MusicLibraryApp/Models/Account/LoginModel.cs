@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Versioning;
 
 namespace MusicLibraryApp.Models.Account
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Username is required")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource),
+            ErrorMessageResourceName = "UsernameRequired")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
-        [DataType(DataType.Password)]
+		[Required(ErrorMessageResourceType = typeof(Resources.Resource),
+			ErrorMessageResourceName = "PasswordRequired")]
+		[DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

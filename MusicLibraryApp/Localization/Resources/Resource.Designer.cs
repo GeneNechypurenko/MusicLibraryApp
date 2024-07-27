@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.Resources {
+namespace Resources {
     using System;
     
     
@@ -61,11 +61,398 @@ namespace Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOGIN TO YOUR ACCOUNT.
+        /// </summary>
+        public static string AccountLoginHeader {
+            get {
+                return ResourceManager.GetString("AccountLoginHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string BackLink {
+            get {
+                return ResourceManager.GetString("BackLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ButtonConfirm {
+            get {
+                return ResourceManager.GetString("ButtonConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE TUNE.
+        /// </summary>
+        public static string ButtonDeleteTunes {
+            get {
+                return ResourceManager.GetString("ButtonDeleteTunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE USER.
+        /// </summary>
+        public static string ButtonDeleteUsers {
+            get {
+                return ResourceManager.GetString("ButtonDeleteUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string ButtonLogIn {
+            get {
+                return ResourceManager.GetString("ButtonLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string ButtonSignUp {
+            get {
+                return ResourceManager.GetString("ButtonSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GENRES.
+        /// </summary>
+        public static string CategoriesLink {
+            get {
+                return ResourceManager.GetString("CategoriesLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to create new GENRE.
+        /// </summary>
+        public static string CreateGenreLink {
+            get {
+                return ResourceManager.GetString("CreateGenreLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to upload your TUNE.
+        /// </summary>
+        public static string CreateTuneLink {
+            get {
+                return ResourceManager.GetString("CreateTuneLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to Edit:.
+        /// </summary>
+        public static string EditTuneLink {
+            get {
+                return ResourceManager.GetString("EditTuneLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FEATURED GENRES.
+        /// </summary>
+        public static string FeaturedGenres {
+            get {
+                return ResourceManager.GetString("FeaturedGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hello,.
+        /// </summary>
+        public static string Greeting {
+            get {
+                return ResourceManager.GetString("Greeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD YOUR FAVOURITE MUSIC.
+        /// </summary>
+        public static string HomeCreateHeader {
+            get {
+                return ResourceManager.GetString("HomeCreateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TUNE EDITOR.
+        /// </summary>
+        public static string HomeEditHeader {
+            get {
+                return ResourceManager.GetString("HomeEditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blocked TUNES will be moved to &quot;Blocked&quot;.
+        /// </summary>
+        public static string HomeEditWarningBlocked {
+            get {
+                return ResourceManager.GetString("HomeEditWarningBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unathorized TUNES will be moved to &quot;New&quot;.
+        /// </summary>
+        public static string HomeEditWarningNew {
+            get {
+                return ResourceManager.GetString("HomeEditWarningNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string HomeLink {
+            get {
+                return ResourceManager.GetString("HomeLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogIn.
+        /// </summary>
+        public static string LoginLink {
+            get {
+                return ResourceManager.GetString("LoginLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogOut.
+        /// </summary>
+        public static string LogoutLink {
+            get {
+                return ResourceManager.GetString("LogoutLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this item?.
+        /// </summary>
+        public static string ModalDeleteConfirmationBody {
+            get {
+                return ResourceManager.GetString("ModalDeleteConfirmationBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL.
+        /// </summary>
+        public static string ModalDeleteConfirmationButtonCancel {
+            get {
+                return ResourceManager.GetString("ModalDeleteConfirmationButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONFIRM.
+        /// </summary>
+        public static string ModalDeleteConfirmationButtonConfirm {
+            get {
+                return ResourceManager.GetString("ModalDeleteConfirmationButtonConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE CONFIRMATION.
+        /// </summary>
+        public static string ModalDeleteConfirmationTitle {
+            get {
+                return ResourceManager.GetString("ModalDeleteConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item successfully removed..
+        /// </summary>
+        public static string ModalDeleteSuccessBody {
+            get {
+                return ResourceManager.GetString("ModalDeleteSuccessBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ModalDeleteSuccessButtonClose {
+            get {
+                return ResourceManager.GetString("ModalDeleteSuccessButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success!.
+        /// </summary>
+        public static string ModalDeleteSuccessTitle {
+            get {
+                return ResourceManager.GetString("ModalDeleteSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing here....
+        /// </summary>
+        public static string NothingHere {
+            get {
+                return ResourceManager.GetString("NothingHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your browser does not support the audio element..
+        /// </summary>
+        public static string NotSupportAudio {
+            get {
+                return ResourceManager.GetString("NotSupportAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required.
+        /// </summary>
+        public static string PasswordRequired {
+            get {
+                return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artist.
+        /// </summary>
+        public static string PlaceholderArtist {
+            get {
+                return ResourceManager.GetString("PlaceholderArtist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string PlaceholderConfirmation {
+            get {
+                return ResourceManager.GetString("PlaceholderConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre.
+        /// </summary>
+        public static string PlaceholderGenre {
+            get {
+                return ResourceManager.GetString("PlaceholderGenre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string PlaceholderPassword {
+            get {
+                return ResourceManager.GetString("PlaceholderPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string PlaceholderTitle {
+            get {
+                return ResourceManager.GetString("PlaceholderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string PlaceholderUsername {
+            get {
+                return ResourceManager.GetString("PlaceholderUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SignIn.
+        /// </summary>
+        public static string RegistrationLink {
+            get {
+                return ResourceManager.GetString("RegistrationLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         public static string SelectLanguage {
             get {
                 return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload your audio file here.
+        /// </summary>
+        public static string UploadAudio {
+            get {
+                return ResourceManager.GetString("UploadAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload poster here.
+        /// </summary>
+        public static string UploadPoster {
+            get {
+                return ResourceManager.GetString("UploadPoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is required.
+        /// </summary>
+        public static string UsernameRequired {
+            get {
+                return ResourceManager.GetString("UsernameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blocked USERS will be moved to &quot;Blocked&quot;.
+        /// </summary>
+        public static string UsersEditWarningBlocked {
+            get {
+                return ResourceManager.GetString("UsersEditWarningBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unathorized USERS will be moved to &quot;New&quot;.
+        /// </summary>
+        public static string UsersEditWarningNew {
+            get {
+                return ResourceManager.GetString("UsersEditWarningNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USERS.
+        /// </summary>
+        public static string UsersLink {
+            get {
+                return ResourceManager.GetString("UsersLink", resourceCulture);
             }
         }
     }

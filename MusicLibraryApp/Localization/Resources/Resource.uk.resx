@@ -117,7 +117,136 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountLoginHeader" xml:space="preserve">
+    <value>LOGIN TO YOUR ACCOUNT</value>
+  </data>
+  <data name="BackLink" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="ButtonDeleteTunes" xml:space="preserve">
+    <value>ВИДАЛИТИ МЕЛОДІЮ</value>
+  </data>
+  <data name="ButtonDeleteUsers" xml:space="preserve">
+    <value>ВИДАЛИТИ КОРИСТУВАЧА</value>
+  </data>
+  <data name="ButtonLogIn" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="ButtonSignUp" xml:space="preserve">
+    <value>Зареєструватись</value>
+  </data>
+  <data name="CategoriesLink" xml:space="preserve">
+    <value>ЖАНРИ</value>
+  </data>
+  <data name="CreateGenreLink" xml:space="preserve">
+    <value>Натисніть тут, щоб додати новий ЖАНР</value>
+  </data>
+  <data name="CreateTuneLink" xml:space="preserve">
+    <value>Натисніть тут, щоб завантажити свою МЕЛОДІЮ</value>
+  </data>
+  <data name="EditTuneLink" xml:space="preserve">
+    <value>Натисніть, щоб редагувати:</value>
+  </data>
+  <data name="FeaturedGenres" xml:space="preserve">
+    <value>ПОПУЛЯРНІ ЖАНРИ</value>
+  </data>
+  <data name="Greeting" xml:space="preserve">
+    <value>вітаю, </value>
+  </data>
+  <data name="HomeCreateHeader" xml:space="preserve">
+    <value>ADD YOUR FAVOURITE MUSIC</value>
+  </data>
+  <data name="HomeEditHeader" xml:space="preserve">
+    <value>TUNE EDITOR</value>
+  </data>
+  <data name="HomeEditWarningBlocked" xml:space="preserve">
+    <value>Заблоковані МЕЛОДІЇ буде переміщено в "Blocked"</value>
+  </data>
+  <data name="HomeEditWarningNew" xml:space="preserve">
+    <value>Неавторізовані МЕЛОДІЇ буде переміщено в "New"</value>
+  </data>
+  <data name="HomeLink" xml:space="preserve">
+    <value>ГОЛОВНА</value>
+  </data>
+  <data name="LoginLink" xml:space="preserve">
+    <value>LogIn</value>
+  </data>
+  <data name="LogoutLink" xml:space="preserve">
+    <value>LogOut</value>
+  </data>
+  <data name="ModalDeleteConfirmationBody" xml:space="preserve">
+    <value>Ви впевнені, що хочете видалити цей елемент?</value>
+  </data>
+  <data name="ModalDeleteConfirmationButtonCancel" xml:space="preserve">
+    <value>СКАСУВАТИ</value>
+  </data>
+  <data name="ModalDeleteConfirmationButtonConfirm" xml:space="preserve">
+    <value>ПІДТВЕРДИТИ</value>
+  </data>
+  <data name="ModalDeleteConfirmationTitle" xml:space="preserve">
+    <value>ПІДТВЕРДИТИ ВИДАЛЕННЯ</value>
+  </data>
+  <data name="ModalDeleteSuccessBody" xml:space="preserve">
+    <value>Елемент успішно видалено.</value>
+  </data>
+  <data name="ModalDeleteSuccessButtonClose" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
+  <data name="ModalDeleteSuccessTitle" xml:space="preserve">
+    <value>Успіх!</value>
+  </data>
+  <data name="NothingHere" xml:space="preserve">
+    <value>Тут нічого немає...</value>
+  </data>
+  <data name="NotSupportAudio" xml:space="preserve">
+    <value>Ваш браузер не підтримує звуковий елемент.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Необхідно ввести пароль</value>
+  </data>
+  <data name="PlaceholderArtist" xml:space="preserve">
+    <value>Артист</value>
+  </data>
+  <data name="PlaceholderConfirmation" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="PlaceholderGenre" xml:space="preserve">
+    <value>Жанр</value>
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PlaceholderTitle" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="PlaceholderUsername" xml:space="preserve">
+    <value>Ім'я користувача</value>
+  </data>
+  <data name="RegistrationLink" xml:space="preserve">
+    <value>SignIn</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Оберіть мову</value>
+    <value>Обрати мову</value>
+  </data>
+  <data name="UploadAudio" xml:space="preserve">
+    <value>Завантажте свій аудіофайл</value>
+  </data>
+  <data name="UploadPoster" xml:space="preserve">
+    <value>Завантажте постер</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Необхідно ввести ім'я користувача</value>
+  </data>
+  <data name="UsersEditWarningBlocked" xml:space="preserve">
+    <value>Заблокованих КОРИСТУВАЧІВ буде переміщено до "Blocked"</value>
+  </data>
+  <data name="UsersEditWarningNew" xml:space="preserve">
+    <value>Неавторизованих КОРИСТУВАЧІВ буде переміщено в "New"</value>
+  </data>
+  <data name="UsersLink" xml:space="preserve">
+    <value>КОРИСТУВАЧІ</value>
   </data>
 </root>

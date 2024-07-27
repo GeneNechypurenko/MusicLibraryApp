@@ -9,20 +9,20 @@
 }
 
 @section HeaderContent {
-	<p class="display_username">hello, @Model.Username</p>
-	<a class="link_type_c" asp-action="Index">Back</a>
+	<p class="display_username">@Resources.Resource.Greeting @Model.Username</p>
+	<a class="link_type_c" asp-action="Index">@Resources.Resource.BackLink</a>
 }
 
 <div class="user-create-data-container">
 	<form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
 		<div class="user-create-group-section">
 			<div class="user-create-input-group">
-				<input placeholder="Genre" asp-for="Genre" />
+				<input placeholder="@Resources.Resource.PlaceholderGenre" asp-for="Genre" />
 				<span asp-validation-for="Genre" class="validation-message"></span>
 			</div>
 		</div>
 		<div class="user-create-button-section">
-			<button class="confirm-button" type="submit">Confirm</button>
+			<button class="confirm-button" type="submit">@Resources.Resource.ButtonConfirm</button>
 		</div>
 	</form>
 </div>

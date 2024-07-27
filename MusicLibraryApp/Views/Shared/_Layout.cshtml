@@ -1,4 +1,4 @@
-﻿@inject MusicLibraryApp.Localization.Services.ILangReader LanguageList
+﻿@inject MusicLibraryApp.Localization.Services.ILangReader Reader
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +50,9 @@
 		</form> *@
 
 		<form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account">
-			<p class="layout-footer-text">@Localization.Resources.Resource.SelectLanguage</p>
-			<select class="layout-footer-select" name="language" onchange="this.form.submit()">
-				@foreach (MusicLibraryApp.Localization.Models.LanguageModel lang in LanguageList.LanguageList())
+			<p class="layout-footer-text">@Resources.Resource.SelectLanguage</p>
+			<select class="layout-footer-select" name="language" @* onchange="this.form.submit()"*@>
+				@foreach (MusicLibraryApp.Localization.Models.LanguageModel lang in Reader.LanguageList())
 				{
 					<option value="@lang.Abbreviation">@lang.Language</option>
 				}

@@ -19,7 +19,7 @@ namespace MusicLibraryApp.Localization.Filter
 			}
 			else
 			{
-				currentCulture = "en";
+				currentCulture = "uk";
 			}
 
 			List<string> cultures = context.HttpContext.RequestServices.GetRequiredService<ILangReader>()
@@ -27,7 +27,7 @@ namespace MusicLibraryApp.Localization.Filter
 
 			if (!cultures.Contains(currentCulture))
 			{
-				currentCulture = "en";
+				currentCulture = "uk";
 			}
 
 			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(currentCulture);

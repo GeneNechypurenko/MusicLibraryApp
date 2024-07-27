@@ -117,7 +117,136 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountLoginHeader" xml:space="preserve">
+    <value>LOGIN TO YOUR ACCOUNT</value>
+  </data>
+  <data name="BackLink" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ButtonDeleteTunes" xml:space="preserve">
+    <value>DELETE TUNE</value>
+  </data>
+  <data name="ButtonDeleteUsers" xml:space="preserve">
+    <value>DELETE USER</value>
+  </data>
+  <data name="ButtonLogIn" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="ButtonSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="CategoriesLink" xml:space="preserve">
+    <value>GENRES</value>
+  </data>
+  <data name="CreateGenreLink" xml:space="preserve">
+    <value>Click here to create new GENRE</value>
+  </data>
+  <data name="CreateTuneLink" xml:space="preserve">
+    <value>Click here to upload your TUNE</value>
+  </data>
+  <data name="EditTuneLink" xml:space="preserve">
+    <value>Click to Edit:</value>
+  </data>
+  <data name="FeaturedGenres" xml:space="preserve">
+    <value>FEATURED GENRES</value>
+  </data>
+  <data name="Greeting" xml:space="preserve">
+    <value>hello,</value>
+  </data>
+  <data name="HomeCreateHeader" xml:space="preserve">
+    <value>ADD YOUR FAVOURITE MUSIC</value>
+  </data>
+  <data name="HomeEditHeader" xml:space="preserve">
+    <value>TUNE EDITOR</value>
+  </data>
+  <data name="HomeEditWarningBlocked" xml:space="preserve">
+    <value>Blocked TUNES will be moved to "Blocked"</value>
+  </data>
+  <data name="HomeEditWarningNew" xml:space="preserve">
+    <value>Unathorized TUNES will be moved to "New"</value>
+  </data>
+  <data name="HomeLink" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="LoginLink" xml:space="preserve">
+    <value>LogIn</value>
+  </data>
+  <data name="LogoutLink" xml:space="preserve">
+    <value>LogOut</value>
+  </data>
+  <data name="ModalDeleteConfirmationBody" xml:space="preserve">
+    <value>Are you sure you want to delete this item?</value>
+  </data>
+  <data name="ModalDeleteConfirmationButtonCancel" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="ModalDeleteConfirmationButtonConfirm" xml:space="preserve">
+    <value>CONFIRM</value>
+  </data>
+  <data name="ModalDeleteConfirmationTitle" xml:space="preserve">
+    <value>DELETE CONFIRMATION</value>
+  </data>
+  <data name="ModalDeleteSuccessBody" xml:space="preserve">
+    <value>Item successfully removed.</value>
+  </data>
+  <data name="ModalDeleteSuccessButtonClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ModalDeleteSuccessTitle" xml:space="preserve">
+    <value>Success!</value>
+  </data>
+  <data name="NothingHere" xml:space="preserve">
+    <value>Nothing here...</value>
+  </data>
+  <data name="NotSupportAudio" xml:space="preserve">
+    <value>Your browser does not support the audio element.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="PlaceholderArtist" xml:space="preserve">
+    <value>Artist</value>
+  </data>
+  <data name="PlaceholderConfirmation" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="PlaceholderGenre" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlaceholderTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="PlaceholderUsername" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="RegistrationLink" xml:space="preserve">
+    <value>SignIn</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="UploadAudio" xml:space="preserve">
+    <value>Upload your audio file here</value>
+  </data>
+  <data name="UploadPoster" xml:space="preserve">
+    <value>Upload poster here</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Username is required</value>
+  </data>
+  <data name="UsersEditWarningBlocked" xml:space="preserve">
+    <value>Blocked USERS will be moved to "Blocked"</value>
+  </data>
+  <data name="UsersEditWarningNew" xml:space="preserve">
+    <value>Unathorized USERS will be moved to "New"</value>
+  </data>
+  <data name="UsersLink" xml:space="preserve">
+    <value>USERS</value>
   </data>
 </root>

@@ -1,43 +1,43 @@
 ﻿@model MusicLibraryApp.Models.Home.CreateTuneModel
 
 @{
-	ViewData["Title"] = "Create Tune";
+	ViewData["Title"] = "Home Create";
 }
 
 @section HeaderText {
-	<h2>ADD YOUR FAVOURITE MUSIC</h2>
+	<h2>@Resources.Resource.HomeCreateHeader</h2>
 }
 
 @section HeaderContent {
-	<p class="display_username">hello, @Model.Username</p>
-	<a class="link_type_c" asp-action="Index">Back</a>
+	<p class="display_username">@Resources.Resource.Greeting @Model.Username</p>
+	<a class="link_type_c" asp-action="Index">@Resources.Resource.BackLink</a>
 }
 
 <div class="user-create-data-container">
 	<form class="user-create-form" asp-action="Create" method="post" enctype="multipart/form-data">
 		<div class="user-create-group-section">
 			<div class="user-create-input-group">
-				<input placeholder="Artist" asp-for="Performer" />
+				<input placeholder="@Resources.Resource.PlaceholderArtist" asp-for="Performer" />
 				<span asp-validation-for="Performer" class="validation-message"></span>
 				<hr />
-				<input placeholder="Title" asp-for="Title" />
+				<input placeholder="@Resources.Resource.PlaceholderTitle" asp-for="Title" />
 				<span asp-validation-for="Title" class="validation-message"></span>
 				<hr />
 				<select asp-for="CategoryId" class="form-control" asp-items="Model.Categories"></select>
 				<span></span>
 			</div>
 			<div class="user-create-input-group">
-				<p>Upload your audio file here</p>
+				<p>@Resources.Resource.UploadAudio</p>
 				<input type="file" asp-for="File" />
 				<span asp-validation-for="File" class="validation-message"></span>
 				<hr />
-				<p>Upload poster here</p>
+				<p>@Resources.Resource.UploadPoster</p>
 				<input type="file" asp-for="Poster" />
 				<span asp-validation-for="Poster" class="validation-message"></span>
 			</div>
 		</div>
 		<div class="user-create-button-section">
-			<button class="confirm-button" type="submit">Confirm</button>
+			<button class="confirm-button" type="submit">@Resources.Resource.ButtonConfirm</button>
 		</div>
 	</form>
 </div>

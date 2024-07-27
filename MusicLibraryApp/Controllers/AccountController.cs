@@ -24,7 +24,9 @@ namespace MusicLibraryApp.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginModel login)
 		{
-			if (ModelState.IsValid)
+            string? returnUrl = HttpContext.Session.GetString("path");
+
+            if (ModelState.IsValid)
 			{
 				var userList = await _userService.GetAllAsync();
 				var user = userList.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
@@ -76,7 +78,7 @@ namespace MusicLibraryApp.Controllers
 
 			if (!cultures.Contains(language))
 			{
-				language = "en";
+				language = "uk";
 			}
 
 			CookieOptions option = new CookieOptions();
