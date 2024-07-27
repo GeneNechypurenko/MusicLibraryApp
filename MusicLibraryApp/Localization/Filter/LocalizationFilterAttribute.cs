@@ -10,26 +10,23 @@ namespace MusicLibraryApp.Localization.Filter
 
 		public void OnActionExecuting(ActionExecutingContext context)
 		{
-			string? currentCulture = context.HttpContext.Request.Cookies["Localization"];
-			if (string.IsNullOrEmpty(currentCulture))
-			{
-				currentCulture = "en";
-			}
+			string? cultureName = null;
+
+			var cultureCookie = context.HttpContext.Request.Cookies["Localization"];
+			if (cultureCookie != null)
+				cultureName = cultureCookie;
 			else
-			{
-				currentCulture = currentCulture.Replace("Localization:", "");
-			}
+				cultureName = "en";
 
 			List<string> cultures = context.HttpContext.RequestServices.GetRequiredService<ILangReader>()
-				.LanguageList().Select(t => t.Abbreviation).ToList()!;
-
-			if (!cultures.Contains(currentCulture))
+									.LanguageList().Select(t => t.Abbreviation).ToList()!;
+			if (!cultures.Contains(cultureName))
 			{
-				currentCulture = "en";
+				cultureName = "en";
 			}
 
-			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(currentCulture);
-			Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(currentCulture);
+			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
+			Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
 		}
 	}
 }

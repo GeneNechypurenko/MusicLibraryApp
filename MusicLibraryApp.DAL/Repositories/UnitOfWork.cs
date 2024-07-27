@@ -1,7 +1,6 @@
 ﻿using MusicLibraryApp.DAL.Data;
 using MusicLibraryApp.DAL.Models;
 using MusicLibraryApp.DAL.Repositories.Interfaces;
-using System.Threading.Tasks;
 
 namespace MusicLibraryApp.DAL.Repositories
 {

@@ -1,31 +1,34 @@
 ﻿using MusicLibraryApp.Localization.Models;
-using MusicLibraryApp.Localization.Services;
 
-public class LangReaderService : ILangReader
+namespace MusicLibraryApp.Localization.Services
 {
-	private readonly IConfiguration _config;
-	private readonly List<LanguageModel> _languageList;
-
-	public LangReaderService(IConfiguration config)
+	public class LangReaderService : ILangReader
 	{
-		_config = config;
+		private readonly IConfiguration _config;
+		private readonly List<LanguageModel> _languageList;
 
-		IConfigurationSection localization = _config.GetSection("Localization");
-		List<LanguageModel> languages = new List<LanguageModel>();
-
-		foreach (var language in localization.AsEnumerable())
+		public LangReaderService(IConfiguration config)
 		{
-			if (language.Value != null)
-			{
-				languages.Add(new LanguageModel
-				{
-					Abbreviation = language.Key.Replace(localization.Key + ":", ""),
-					Language = language.Value
-				});
-			}
-		}
+			string section = "Localization";
+			_config = config;
 
-		_languageList = languages;
+			IConfigurationSection localization = _config.GetSection(section);
+			List<LanguageModel> languages = new List<LanguageModel>();
+
+			foreach (var language in localization.AsEnumerable())
+			{
+				if (language.Value != null)
+				{
+					languages.Add(new LanguageModel
+					{
+						Abbreviation = language.Key.Replace(section + ":", ""),
+						Language = language.Value
+					});
+				}
+			}
+
+			_languageList = languages;
+		}
+		public List<LanguageModel> LanguageList() => _languageList;
 	}
-	public List<LanguageModel> LanguageList() => _languageList;
 }

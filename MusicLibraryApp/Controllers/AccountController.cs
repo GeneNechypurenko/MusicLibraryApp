@@ -72,26 +72,17 @@ namespace MusicLibraryApp.Controllers
 		[HttpPost]
 		public ActionResult ChangeCulture(string language)
 		{
-			string? returnUrl = HttpContext.Session.GetString("path");
+			string? returnUrl = HttpContext.Session.GetString("path") ?? "/Home/Index";
 
-			List<string> cultures = _langReader.LanguageList().Select(t => t.Abbreviation).ToList();
-
+			List<string> cultures = _langReader.LanguageList().Select(t => t.Abbreviation).ToList()!;
 			if (!cultures.Contains(language))
 			{
 				language = "en";
 			}
 
-			CookieOptions option = new CookieOptions
-			{
-				Expires = DateTime.Now.AddDays(10)
-			};
-			Response.Cookies.Append("Localization", $"Localization:{language}", option);
-
-			if (string.IsNullOrEmpty(returnUrl))
-			{
-				returnUrl = Url.Action("Index", "Home");
-			}
-
+			CookieOptions option = new CookieOptions();
+			option.Expires = DateTime.Now.AddDays(30);
+			Response.Cookies.Append("Localization", language, option);
 			return Redirect(returnUrl);
 		}
 
