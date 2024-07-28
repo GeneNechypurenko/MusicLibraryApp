@@ -16,16 +16,14 @@ namespace MusicLibraryApp.Controllers
         private readonly IService<CategoryDTO> _category;
         private readonly IService<TuneDTO> _tune;
         private readonly IWebHostEnvironment _web;
-        private readonly ILangReader _reader;
 
         public HomeController(IService<UserDTO> user, IService<CategoryDTO> category, IService<TuneDTO> tune,
-            IWebHostEnvironment web, ILangReader reader)
+            IWebHostEnvironment web)
         {
             _user = user;
             _category = category;
             _tune = tune;
             _web = web;
-            _reader = reader;
         }
 
         public async Task<IActionResult> Index(int selected = 0, int pageNumber = 1, int pageSize = 5)
@@ -114,7 +112,7 @@ namespace MusicLibraryApp.Controllers
                 FileUrl = tuneFilePath,
                 PosterUrl = posterFilePath,
                 CategoryId = model.CategoryId,
-                IsAuthorized = true,            // <-- change to false when on production stage!!!
+                IsAuthorized = false,
                 IsBlocked = false
             };
 
