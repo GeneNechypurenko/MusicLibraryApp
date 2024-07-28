@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusicLibraryApp.DAL.Models;
+using System.ComponentModel;
 
 namespace MusicLibraryApp.DAL.Data
 {
@@ -20,6 +21,7 @@ namespace MusicLibraryApp.DAL.Data
                 Id = 1,
                 Username = "Admin",
                 Password = "password",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("password"),
                 IsAdmin = true,
                 IsAuthorized = true,
                 IsBlocked = false
@@ -29,6 +31,7 @@ namespace MusicLibraryApp.DAL.Data
                 Id = 2,
                 Username = "Test",
                 Password = "password",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("password"),
                 IsAdmin = false,
                 IsAuthorized = true,
                 IsBlocked = false

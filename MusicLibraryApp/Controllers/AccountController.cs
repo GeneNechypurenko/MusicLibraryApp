@@ -29,7 +29,7 @@ namespace MusicLibraryApp.Controllers
 			{
 				var userList = await _userService.GetAllAsync();
 				var user = userList.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
-				if (user != null)
+				if (user != null && BCrypt.Net.BCrypt.Verify(user.Password, user.PasswordHash))
 				{
 					HttpContext.Session.SetInt32("UserId", user.Id);
 
@@ -54,8 +54,9 @@ namespace MusicLibraryApp.Controllers
 				var newUser = new UserDTO
 				{
 					Username = registration.Username,
-					Password = registration.Password
-				};
+					Password = registration.Password,
+					PasswordHash = BCrypt.Net.BCrypt.HashPassword(registration.Password)
+                };
 
 				await _userService.CreateAsync(newUser);
 				return RedirectToAction("Index", "Home");

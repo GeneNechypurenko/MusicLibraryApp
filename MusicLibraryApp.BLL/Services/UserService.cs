@@ -17,6 +17,7 @@ namespace MusicLibraryApp.BLL.Services
 				Id = modelDTO.Id,
 				Username = modelDTO.Username,
 				Password = modelDTO.Password,
+				PasswordHash = modelDTO.PasswordHash,
 				IsAdmin = modelDTO.IsAdmin,
 				IsAuthorized = modelDTO.IsAuthorized,
 				IsBlocked = modelDTO.IsBlocked,
@@ -42,6 +43,7 @@ namespace MusicLibraryApp.BLL.Services
 				Id = user.Id,
 				Username = user.Username,
 				Password = user.Password,
+				PasswordHash = user.PasswordHash,
 				IsAdmin = user.IsAdmin,
 				IsAuthorized = user.IsAuthorized,
 				IsBlocked = user.IsBlocked,
@@ -56,6 +58,7 @@ namespace MusicLibraryApp.BLL.Services
 				Id = user.Id,
 				Username = user.Username,
 				Password = user.Password,
+				PasswordHash = user.PasswordHash,
 				IsAdmin = user.IsAdmin,
 				IsAuthorized = user.IsAuthorized,
 				IsBlocked = user.IsBlocked,
@@ -69,6 +72,7 @@ namespace MusicLibraryApp.BLL.Services
 			{
 				user.Username = modelDTO.Username;
 				user.Password = modelDTO.Password;
+				user.PasswordHash = modelDTO.PasswordHash;
 				user.IsAdmin = modelDTO.IsAdmin;
 				user.IsAuthorized = modelDTO.IsAuthorized;
 				user.IsBlocked = modelDTO.IsBlocked;
