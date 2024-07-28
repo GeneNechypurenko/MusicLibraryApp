@@ -3,59 +3,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - MusicLibraryApp</title>
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/MusicLibraryApp.styles.css" asp-append-version="true" />
-	<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MusicLibraryApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MusicLibraryApp.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<div class="layout-gradient_line_decoration"></div>
-		<div class="layout-header-container">
-			<h2>TuneBox</h2>
-			<div class="layout-header-text @(IsSectionDefined("HeaderText") ? "" : "layout-header-no_text")">
-				@RenderSection("HeaderText", required: false)
-			</div>
-			<div class="layout-header-navigation @(IsSectionDefined("HeaderNavigation") ? "" : "layout-header-no_navigation")">
-				@RenderSection("HeaderNavigation", required: false)
-			</div>
-			<div class="layout-header-search @(IsSectionDefined("HeaderSearch") ? "" : "layout-header-no_search")">
-				@RenderSection("HeaderSearch", required: false)
-			</div>
-			<div class="layout-header-content">
-				@RenderSection("HeaderContent", required: false)
-			</div>
-		</div>
-	</header>
+    <header>
+        <div class="layout-gradient_line_decoration"></div>
+        <div class="layout-header-container">
+            <h2>TuneBox</h2>
+            <div class="layout-header-text @(IsSectionDefined("HeaderText") ? "" : "layout-header-no_text")">
+                @RenderSection("HeaderText", required: false)
+            </div>
+            <div class="layout-header-navigation @(IsSectionDefined("HeaderNavigation") ? "" : "layout-header-no_navigation")">
+                @RenderSection("HeaderNavigation", required: false)
+            </div>
+            <div class="layout-header-search @(IsSectionDefined("HeaderSearch") ? "" : "layout-header-no_search")">
+                @RenderSection("HeaderSearch", required: false)
+            </div>
+            <div class="layout-header-content">
+                @RenderSection("HeaderContent", required: false)
+            </div>
+        </div>
+    </header>
 
-	<main>
-		<section class="layout-main-container">
-			@RenderBody()
-		</section>
-	</main>
+    <main>
+        <section class="layout-main-container">
+            @RenderBody()
+        </section>
+    </main>
 
-	<footer>
+    <footer>
+        <form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account" method="post">
+            <h4 id="time-display" class="layout-footer-time"></h4>
+            <select class="layout-footer-select" name="language">
+                <option disabled selected>@Resources.Resource.SelectLanguage</option>
+                @foreach (var lang in Reader.LanguageList())
+                {
+                    <option value="@lang.Abbreviation">@lang.Language</option>
+                }
+            </select>
+            <div class="layout-footer-content">
+                <button class="layout-footer-button" type="submit" name="submit" value="@Resources.Resource.SelectLanguage">Ok</button>
+            </div>
+        </form>
+        <div class="layout-gradient_line_decoration"></div>
+    </footer>
 
-		<form class="layout-footer-container" asp-action="ChangeCulture" asp-controller="Account" method="post">
-			<p class="layout-footer-text">@Resources.Resource.SelectLanguage</p>
-			<select class="layout-footer-select" name="language" onchange="this.form.submit()">
-				@foreach (var lang in Reader.LanguageList())
-				{
-					<option value="@lang.Abbreviation">@lang.Language</option>
-				}
-			</select>
-			<div class="layout-footer-space"></div>
-		</form>
-
-		<div class="layout-gradient_line_decoration"></div>
-	</footer>
-
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	@await RenderSectionAsync("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

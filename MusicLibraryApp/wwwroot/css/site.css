@@ -293,22 +293,25 @@ input[type=file]::file-selector-button {
         bottom: 0;
     }
 
-.layout-footer-text {
+.layout-footer-time {
     height: 100%;
-    width: 90%;
+    width: 80%;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    color: #ff7300;
     display: flex;
-    align-content: flex-end;
     justify-content: center;
+    align-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
-    color: #00ffd5;
-    font-weight: bold;
-    margin: 0;
+    margin-left: 40px;
 }
 
 .layout-footer-select {
     height: 100%;
-    width: 10%;
+    width: 12%;
     background: #000000cc;
     color: #00ffd5;
     padding: 6px;
@@ -316,8 +319,40 @@ input[type=file]::file-selector-button {
     outline: none;
     border: none;
     font-weight: bold;
-    margin-right: 40px;
 }
+
+.layout-footer-content {
+    height: 100%;
+    width: 8%;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.layout-footer-button {
+    padding: 20px;
+    height: 40px;
+    width: 40px;
+    background: black;
+    padding: 5px;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: #00ffd5;
+    transition: .2s ease-in-out;
+}
+
+    .layout-footer-button:hover {
+        background: #00ffd5;
+        color: black;
+    }
 
 /* ----- Home Index region ----- */
 
