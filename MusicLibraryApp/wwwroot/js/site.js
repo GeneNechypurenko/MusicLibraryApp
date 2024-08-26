@@ -30,22 +30,33 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-});
 
-$(document).ready(function () {
-    $('.btn[data-dismiss="modal"]').click(function () {
-        $(this).closest('.modal').modal('hide');
+    $(document).ready(function () {
+        $('.btn[data-dismiss="modal"]').click(function () {
+            $(this).closest('.modal').modal('hide');
+        });
     });
+
+    function updateTime() {
+        const timeDisplay = document.getElementById('time-display');
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .build();
+
+    connection.on("ReceiveNotification", function (message) {
+        alert(message);
+    });
+
+    connection.start();
 });
 
-function updateTime() {
-    const timeDisplay = document.getElementById('time-display');
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
-}
-
-setInterval(updateTime, 1000);
-updateTime();

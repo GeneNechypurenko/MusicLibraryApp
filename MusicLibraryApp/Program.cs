@@ -3,6 +3,7 @@ using MusicLibraryApp.BLL.Infrastructure;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Hubs;
 using MusicLibraryApp.Localization.Services;
 
 namespace MusicLibraryApp
@@ -22,6 +23,7 @@ namespace MusicLibraryApp
 			builder.Services.AddScoped<IService<TuneDTO>, TuneService>();
 
 			builder.Services.AddControllersWithViews();
+			builder.Services.AddSignalR();
 
 			builder.Services.AddDistributedMemoryCache();
 			builder.Services.AddSession(options =>
@@ -38,6 +40,7 @@ namespace MusicLibraryApp
 			app.UseStaticFiles();
 			app.UseSession();
 			app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+			app.MapHub<NotificationHub>("/notificationHub");
 
 			app.Run();
 		}

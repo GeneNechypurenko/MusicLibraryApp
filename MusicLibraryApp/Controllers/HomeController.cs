@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using MusicLibraryApp.BLL.ModelsDTO;
 using MusicLibraryApp.BLL.Services.Interfaces;
+using MusicLibraryApp.Hubs;
 using MusicLibraryApp.Localization.Filter;
 using MusicLibraryApp.Localization.Services;
 using MusicLibraryApp.Models.CommonModels;
@@ -16,14 +18,16 @@ namespace MusicLibraryApp.Controllers
         private readonly IService<CategoryDTO> _category;
         private readonly IService<TuneDTO> _tune;
         private readonly IWebHostEnvironment _web;
+		private readonly IHubContext<NotificationHub> _hub;
 
-        public HomeController(IService<UserDTO> user, IService<CategoryDTO> category, IService<TuneDTO> tune,
-            IWebHostEnvironment web)
+		public HomeController(IService<UserDTO> user, IService<CategoryDTO> category, IService<TuneDTO> tune,
+            IWebHostEnvironment web, IHubContext<NotificationHub> hub)
         {
             _user = user;
             _category = category;
             _tune = tune;
             _web = web;
+            _hub = hub;
         }
 
         public async Task<IActionResult> Index(int selected = 0, int pageNumber = 1, int pageSize = 5)
@@ -117,7 +121,8 @@ namespace MusicLibraryApp.Controllers
             };
 
             await _tune.CreateAsync(tune);
-            return RedirectToAction(nameof(Index));
+			await _hub.Clients.All.SendAsync("ReceiveNotification", "A new tune has been added.");
+			return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -185,14 +190,16 @@ namespace MusicLibraryApp.Controllers
             tune.IsBlocked = model.IsBlocked == 0;
 
             await _tune.UpdateAsync(tune);
-            return RedirectToAction(nameof(Index));
+			await _hub.Clients.All.SendAsync("ReceiveNotification", "A tune has been updated.");
+			return RedirectToAction(nameof(Index));
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             await _tune.DeleteAsync(id);
-            return Ok();
+			await _hub.Clients.All.SendAsync("ReceiveNotification", "A tune has been deleted.");
+			return Ok();
         }
 
         public ActionResult Login() => RedirectToAction("Login", "Account");
